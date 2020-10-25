@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Oregano:ital@0;1&family=Roboto:wght@400;500;700;900&display=swap");
+
+:root {
+  --primary-red: rgb(231, 16, 16);
+  --secondary-grey: rgb(241, 241, 241);
+}
+
+*,
+.row * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100vh;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(245, 245, 245);
+}
+
+nav {
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  position: relative;
+  /* display: flex; */
+}
+
+.order {
+  color: black;
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.order-count {
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-red);
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  right: -5px;
+}
+
+.order i {
+  font-size: 32px;
+  color: black;
+}
+
+.order-container {
+  margin-top: 50px;
+}
+
+.order-col {
+  background: white;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1);
+  min-height: 600px;
+  border-radius: 15px;
+}
+
+.your-order {
+  margin-top: 50px;
+  font-family: "Oregano", cursive;
+  /* font-style: italic; */
+  font-weight: bold;
+}
+
+.order-items {
+  width: 100%;
+  margin-top: 50px;
+  list-style: none;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.order-item {
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  position: relative;
+  width: 100%;
+  height: 100px;
+  /* border-top: 1px solid var(--secondary-grey); */
+  border-bottom: 1px solid var(--secondary-grey);
+}
+
+.order-item .item-name,
+.order-item .item-price,
+.order-item .item-remove,
+.order-item .item-count,
+.order-item .item-add,
+.order-item .item-delete {
+  display: inline-block;
+}
+
+.item-img {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.item-desc {
+  position: absolute;
+  left: 120px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.item-delete-btns {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--primary-red);
+}
+
+.item-name,
+.item-price {
+  font-family: "Oregano", cursive;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.item-price {
+  margin-left: 100px;
+  color: var(--primary-red);
+}
+
+.item-count {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* .item-count-btns {
+  margin-top: 20px;
+} */
+
+.item-count-btns div {
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  background: var(--secondary-grey);
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  padding-top: 1px;
+}
+
+.item-count-btns .item-count {
+  margin: auto 5px;
+}
+
+.order-total {
+  padding-left: 60px;
+  padding-right: 50px;
+  font-family: "Oregano", cursive;
+}
+
+.order-total-price {
+  color: var(--primary-red);
+  margin-left: 190px;
+  font-style: italic;
+}
+
+.order-btns button {
+  width: 120px;
+  height: 40px;
+  font-weight: bold;
+  margin: 50px 20px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-order {
+  color: white;
+  background: var(--primary-red);
+}
+
+.btn-cancel {
+  border: 2px solid var(--primary-red) !important;
+  background: white;
+}

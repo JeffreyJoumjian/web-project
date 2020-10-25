@@ -79,8 +79,20 @@ nav {
   font-family: "Oregano", cursive;
   /* font-style: italic; */
   font-weight: bold;
+  position: relative;
+  padding-bottom: 20px;
 }
 
+.your-order::after {
+  content: "";
+  width: 60%;
+  height: 2px;
+  background: var(--secondary-grey);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .order-items {
   width: 100%;
   margin-top: 50px;

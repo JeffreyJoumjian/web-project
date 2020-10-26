@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Oregano:ital@0;1&family=Roboto:wght@400;500;700;900&display=swap");
 
-:root {
-  --primary-red: rgb(231, 16, 16);
-  --secondary-grey: rgb(241, 241, 241);
-  --secondary-grey-dark: #999;
-}
+@import "./colors.css";
 
 *,
 .row * {
@@ -63,27 +59,44 @@ nav {
   font-size: 32px;
 }
 
+.menu-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(../img/order-background.jpg);
+  background-clip: cover;
+  background-size: 100% 100%;
+}
+
 .menu-column {
   padding: 50px;
 }
+#search::placeholder {
+  color: white;
+}
 
 #search {
+  color: white;
   font-family: "Oregano", cursive;
   font-style: italic;
   padding-bottom: 5px;
-  background: transparent;
+  background: rgba(245, 245, 245, 0.1);
   width: 50%;
   font-size: 32px;
   border: none;
-  border-bottom: 2px solid var(--secondary-grey-dark);
+  border-bottom: 3px solid white;
   text-align: center;
   outline: none;
   transition: all 0.3s ease-out;
+  border-radius: 50px;
 }
 
 #search:focus {
   border-bottom: 2px solid var(--primary-red);
+  background: rgba(245, 245, 245, 0.95);
+  color: black;
   transform: translateY(-5px);
+}
+#search:focus::placeholder {
+  color: var(--secondary-grey-dark);
 }
 
 .categories {
@@ -102,13 +115,17 @@ nav {
 .categories .category {
   position: relative;
   padding: 5px 40px;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 28px;
   cursor: pointer;
   border-radius: 50px;
   box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid var(--secondary-grey-dark);
-  color: var(--secondary-grey-dark);
+  border: 3px solid var(--primary-red);
+  background: white;
+  color: var(--primary-red);
+  /* border: 2px solid white; */
+  /* var(--secondary-grey-dark); */
+  /* color: white; */
 }
 
 .category.active {
@@ -265,6 +282,11 @@ nav {
     font-size: 20px !important;
   }
 }
+@media screen and (max-width: 768px) {
+  .order-col {
+    position: relative !important;
+  }
+}
 @media screen and (max-width: 730px) {
   #search {
     width: 100%;
@@ -294,6 +316,11 @@ nav {
 @media (min-width: 1200px) { ... } */
 
 .order-col {
+  min-height: 600px;
+  max-height: 1100px;
+  position: sticky;
+  right: 0;
+  top: 0;
   background: white;
   /* box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1); */
   min-height: 600px;
@@ -321,6 +348,9 @@ nav {
 }
 
 .order-items {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  height: 500px;
   width: 100%;
   margin-top: 50px;
   list-style: none;

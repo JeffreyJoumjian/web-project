@@ -21,124 +21,160 @@
 	</nav>
 
 	<div class="container-fluid order-container">
-		<div class="row">
-			<div class=" col-lg-6 col-md-8 col-sm-10 mx-auto order-col">
-				<h1 class="your-order text-center">Your Order</h1>
+		<div class="row mx-auto">
 
-				<ul class="order-items">
+			<!-- details col -->
+			<div class="col-12 col-md-6 details-col mx-auto">
+				<div class="details-wrapper">
+					<h1 class="your-details text-center">Your Details</h1>
 
-					<!-- component -->
-					<li class="order-item">
-						<div class="item-img">
-							<img src="../img/pizza/pizza-12.png" width="100px" height="100px" alt="">
+					<form action="/" class="order-form">
+						<div class="order-total text-center">
+							<h2>Total: <p class="order-total-price">$27.96</p>
+							</h2>
 						</div>
-
-						<div class="item-desc">
-							<div class="item-head">
-								<p class="item-name">Item Name</p>
-								<p class="item-price">$6.99</p>
-							</div>
-
-							<div class="item-count-btns">
-								<div class="item-remove">
-									<i class="fas fa-minus item-remove"></i>
-								</div>
-								<p class="item-count">1</p>
-								<div class="item-add">
-									<i class="fas fa-plus"></i>
-								</div>
-							</div>
-						</div>
-						<div class="item-delete-btns">
-							<i class="fas fa-times"></i>
-						</div>
-					</li>
-
-					<!-- component -->
-					<li class="order-item">
-						<div class="item-img">
-							<img src="../img/pizza/pizza-12.png" width="100px" height="100px" alt="">
+						<div class="label-group">
+							<input class="order-name" type="text" name="name" required>
+							<label for="name">Name</label>
 						</div>
 
-						<div class="item-desc">
-							<div class="item-head">
-								<p class="item-name">Item Name</p>
-								<p class="item-price">$6.99</p>
-							</div>
-
-							<div class="item-count-btns">
-								<div class="item-remove">
-									<i class="fas fa-minus item-remove"></i>
-								</div>
-								<p class="item-count">1</p>
-								<div class="item-add">
-									<i class="fas fa-plus"></i>
-								</div>
-							</div>
-						</div>
-						<div class="item-delete-btns">
-							<i class="fas fa-times"></i>
-						</div>
-					</li>
-					<!-- component -->
-					<li class="order-item">
-						<div class="item-img">
-							<img src="../img/pizza/pizza-12.png" width="100px" height="100px" alt="">
+						<div class="label-group">
+							<input class="order-phone" type="text" name="phone" required>
+							<label for="phone">Phone</label>
 						</div>
 
-						<div class="item-desc">
-							<div class="item-head">
-								<p class="item-name">Item Name</p>
-								<p class="item-price">$6.99</p>
-							</div>
+						<div class="label-group">
+							<input class="order-address" type="text" name="address" required>
+							<label for="address">Address</label>
 
-							<div class="item-count-btns">
-								<div class="item-remove">
-									<i class="fas fa-minus item-remove"></i>
-								</div>
-								<p class="item-count">1</p>
-								<div class="item-add">
-									<i class="fas fa-plus"></i>
-								</div>
-							</div>
-						</div>
-						<div class="item-delete-btns">
-							<i class="fas fa-times"></i>
-						</div>
-					</li>
-					<!-- component -->
-					<li class="order-item">
-						<div class="item-img">
-							<img src="../img/pizza/pizza-12.png" width="100px" height="100px" alt="">
 						</div>
 
-						<div class="item-desc">
-							<div class="item-head">
-								<p class="item-name">Item Name</p>
-								<p class="item-price">$6.99</p>
-							</div>
-
-							<div class="item-count-btns">
-								<div class="item-remove">
-									<i class="fas fa-minus item-remove"></i>
-								</div>
-								<p class="item-count">1</p>
-								<div class="item-add">
-									<i class="fas fa-plus"></i>
-								</div>
-							</div>
+						<div class="order-btns text-center">
+							<button class="btn-cancel">cancel</button>
+							<button class="btn-order">Order Now</button>
 						</div>
-						<div class="item-delete-btns">
-							<i class="fas fa-times"></i>
-						</div>
-					</li>
-				</ul>
-				<div class="order-total">
-					<h2>Total: <span class="order-total-price">$27.96</span></h2>
+					</form>
 				</div>
-				<div class="order-btns text-center">
-					<button class="btn-cancel">cancel</button>
-					<button class="btn-order">Order Now</button>
+			</div>
+
+
+			<!-- order col -->
+			<div class="col-12 col-md-6 order-col mx-auto">
+				<div class="order-wrapper">
+					<h1 class="your-order text-center">Your Order</h1>
+
+					<ul class="order-items">
+
+						<!-- component -->
+						<li class="order-item">
+							<div class="item-img">
+								<img src="../img/pizza/pizza-12.png" width="100px" height="100px" alt="">
+							</div>
+
+							<div class="item-desc">
+								<div class="item-head">
+									<p class="item-name">Item Name</p>
+									<p class="item-price">$6.99</p>
+								</div>
+
+								<div class="item-count-btns">
+									<div class="item-remove">
+										<i class="fas fa-minus item-remove"></i>
+									</div>
+									<p class="item-count">1</p>
+									<div class="item-add">
+										<i class="fas fa-plus"></i>
+									</div>
+								</div>
+							</div>
+							<div class="item-delete-btns">
+								<i class="fas fa-times"></i>
+							</div>
+						</li>
+
+						<!-- component -->
+						<li class="order-item">
+							<div class="item-img">
+								<img src="../img/pizza/pizza-12.png" width="100px" height="100px" alt="">
+							</div>
+
+							<div class="item-desc">
+								<div class="item-head">
+									<p class="item-name">Item Name</p>
+									<p class="item-price">$6.99</p>
+								</div>
+
+								<div class="item-count-btns">
+									<div class="item-remove">
+										<i class="fas fa-minus item-remove"></i>
+									</div>
+									<p class="item-count">1</p>
+									<div class="item-add">
+										<i class="fas fa-plus"></i>
+									</div>
+								</div>
+							</div>
+							<div class="item-delete-btns">
+								<i class="fas fa-times"></i>
+							</div>
+						</li>
+						<!-- component -->
+						<li class="order-item">
+							<div class="item-img">
+								<img src="../img/pizza/pizza-12.png" width="100px" height="100px" alt="">
+							</div>
+
+							<div class="item-desc">
+								<div class="item-head">
+									<p class="item-name">Item Name</p>
+									<p class="item-price">$6.99</p>
+								</div>
+
+								<div class="item-count-btns">
+									<div class="item-remove">
+										<i class="fas fa-minus item-remove"></i>
+									</div>
+									<p class="item-count">1</p>
+									<div class="item-add">
+										<i class="fas fa-plus"></i>
+									</div>
+								</div>
+							</div>
+							<div class="item-delete-btns">
+								<i class="fas fa-times"></i>
+							</div>
+						</li>
+						<!-- component -->
+						<li class="order-item">
+							<div class="item-img">
+								<img src="../img/pizza/pizza-12.png" width="100px" height="100px" alt="">
+							</div>
+
+							<div class="item-desc">
+								<div class="item-head">
+									<p class="item-name">Item Name</p>
+									<p class="item-price">$6.99</p>
+								</div>
+
+								<div class="item-count-btns">
+									<div class="item-remove">
+										<i class="fas fa-minus item-remove"></i>
+									</div>
+									<p class="item-count">1</p>
+									<div class="item-add">
+										<i class="fas fa-plus"></i>
+									</div>
+								</div>
+							</div>
+							<div class="item-delete-btns">
+								<i class="fas fa-times"></i>
+							</div>
+						</li>
+					</ul>
+					<div class="order-total">
+						<h2>Total: <span class="order-total-price">$27.96</span></h2>
+					</div>
+
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Oregano:ital@0;1&family=Roboto:wght@400;500;700;900&display=swap");
 @import "./colors.css";
+@import "./nav-footer.css";
 
 *,
 .row * {
@@ -18,14 +19,74 @@ body {
   width: 100%;
   height: 100vh;
   background-color: rgb(245, 245, 245);
+  overflow: hidden;
 }
 
 nav {
   width: 100%;
-  height: 70px;
-  background-color: white;
-  position: relative;
+  height: 70px !important;
+  background-color: white !important;
+  position: fixed !important;
+  top: 0;
   /* display: flex; */
+}
+.navbar {
+  padding: 0;
+  z-index: 2;
+  padding-right: 100px !important;
+}
+
+.navbar-brand:hover {
+  color: black !important;
+}
+
+.navbar-brand {
+  color: black !important;
+  padding: 0 20px;
+}
+
+.nav-link {
+  color: black !important;
+}
+
+.nav-link:hover {
+  color: var(--primary-red) !important;
+}
+
+.nav-item {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.navbar-toggler {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  width: 50px;
+  height: 40px;
+}
+
+.burger-line {
+  background: black;
+}
+
+#btn-sign-in {
+  color: white !important;
+  background-color: var(--primary-red) !important;
+}
+
+@media screen and (max-width: 991px) {
+  .navbar {
+    padding-right: 0px;
+  }
+
+  #navbarSupportedContent {
+    padding-bottom: 20px;
+  }
 }
 
 .order {
@@ -60,7 +121,7 @@ nav {
 }
 
 .order-container {
-  margin-top: 50px;
+  margin-top: 150px;
   padding: 0 50px;
 }
 
@@ -357,6 +418,10 @@ input:valid + label {
 @media screen and (max-width: 768px) {
   .order-col {
     position: relative !important;
+  }
+
+  body {
+    overflow-y: scroll;
   }
 }
 @media screen and (max-width: 730px) {

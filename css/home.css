@@ -1,0 +1,217 @@
+@import "./colors.css";
+@import "./nav-footer.css";
+
+h1 {
+  font-size: 3.5rem;
+  line-height: 1.5;
+  font-family: "Montserrat", sans-serif;
+}
+h2 {
+  font-size: 3rem;
+  font-family: "Montserrat";
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+#features {
+  padding: 7% 15%;
+}
+.ico {
+  margin: 20px 10px;
+}
+#favorites {
+  padding: 7% 15%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../img/backgrounds/wood-background.jpg");
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#intro {
+  padding: 7% 15%;
+  background-color: var(--primary-red);
+}
+#commitment {
+  padding: 7% 15%;
+}
+#story {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/img/backgrounds/black-bg.jpg");
+  padding: 7% 15%;
+
+  background-size: 100%;
+  background-clip: cover;
+
+  color: white;
+}
+
+#menu {
+  padding: 7% 15%;
+}
+
+.imgStory {
+  width: 150px;
+  height: 150px;
+
+  margin-bottom: 1.5rem;
+}
+
+#testimonials {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../img/backgrounds/wood-background.jpg");
+  background-repeat: no-repeat;
+  text-align: center;
+  background-size: cover;
+
+  color: white;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+.carousel-item {
+  padding: 7% 15%;
+}
+
+#contact {
+  padding: 7% 15%;
+}
+
+.all {
+  width: 100%;
+}
+
+form {
+  width: 50%;
+}
+
+aside {
+  width: 50%;
+  float: right;
+}
+
+.mapouter {
+  position: relative;
+  text-align: right;
+  height: 300px;
+  width: 300px;
+}
+
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  height: 300px;
+  width: 300px;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+}
+.icon {
+  color: #b22222;
+  margin-bottom: 1rem;
+}
+.icon:hover {
+  color: #8b0000;
+}
+h3 {
+  font-family: "Montserrat";
+  font-weight: bold;
+}
+.feature-box {
+  text-align: center;
+}
+
+.input {
+  margin-bottom: 1.5rem;
+  margin-left: 1rem;
+  padding: 1rem;
+}
+.message {
+  margin-left: 1rem;
+  width: 70%;
+  margin-top: 0;
+  height: 40%;
+}
+.general {
+  margin-top: 0;
+  margin-left: 1rem;
+  width: 48.5%;
+  margin-bottom: 2rem;
+}
+.submit {
+  margin-left: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.info {
+  margin-top: 2rem;
+  padding-right: 2rem;
+}
+.inquiries {
+  margin-left: 1rem;
+}
+.order {
+  margin: auto;
+}
+.cnt {
+  display: inline-flex;
+  margin-left: 1rem;
+}
+.cnt2 {
+  padding: 0;
+  display: inline-flex;
+  margin-left: 1rem;
+}
+
+@media screen and (max-width: 991px) {
+  .all {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  aside {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  form input {
+    width: 80%;
+    margin-left: 0px !important;
+  }
+
+  .message {
+    width: 80% !important;
+  }
+
+  .info {
+    padding: 0;
+    margin: 0 !important;
+  }
+
+  .cnt {
+    margin-top: 20px;
+  }
+
+  .cnt2 {
+    margin-bottom: 20px;
+  }
+}
+
+.price {
+  font-family: "Oregano", cursive;
+  font-size: 64px;
+}

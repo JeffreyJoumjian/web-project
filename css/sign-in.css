@@ -158,7 +158,7 @@ input:valid + label {
       rgba(var(--primary-red-darkest), 0.4),
       rgba(var(--primary-red-darker), 0.4)
     ),
-    url("../img/sign-in-background.jpg") center center no-repeat;
+    url("../img/backgrounds/sign-in-background.jpg") center center no-repeat;
   background-size: cover !important;
   animation-name: fade-in;
   animation-duration: 1s;

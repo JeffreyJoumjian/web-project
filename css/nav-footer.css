@@ -1,0 +1,120 @@
+@import "./colors.css";
+@import url("https://fonts.googleapis.com/css2?family=Oregano:ital@0;1&family=Roboto:wght@400;500;700;900&display=swap");
+
+#title {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../img/backgrounds/order-background.jpg");
+
+  background-clip: cover;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 50px 150px;
+  color: white;
+}
+
+.navbar-toggler {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  width: 50px;
+  height: 40px;
+}
+
+.burger-line {
+  width: 25px;
+  background: black;
+  height: 3px;
+  margin-bottom: 5px;
+  border-radius: 100px;
+}
+
+.burger-line:last-of-type {
+  margin-bottom: 0;
+}
+
+.navbar-toggler-icon * {
+  border-color: black !important;
+}
+
+.navbar-brand {
+  color: white;
+  font-family: "Oregano", cursive;
+  font-style: italic;
+
+  font-size: 2.5rem;
+}
+
+.navbar-brand:hover {
+  color: white !important;
+}
+
+.navbar {
+  padding: 0 0 4.5rem;
+}
+.nav-item {
+  font-weight: bold;
+  padding: 1.5rem;
+}
+.nav-link {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  color: var(--primary-red) !important;
+  background: white !important;
+  border-radius: 5px !important;
+}
+
+@media screen and (max-width: 991px) {
+  #navbarSupportedContent {
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.05);
+  }
+}
+
+#btn-sign-in {
+  font-weight: bold;
+  color: var(--primary-red);
+  background: white;
+  border-color: white;
+}
+
+#footer {
+  padding: 7% 15%;
+  text-align: center;
+}
+
+.footer-icons {
+  font-size: 32px;
+  color: black;
+  transition: all 0.2s ease-in-out;
+}
+
+.footer-icons:hover {
+  color: var(--primary-red);
+}
+
+@media screen and (max-width: 1150px) {
+  #title {
+    padding: 30px 20px;
+  }
+
+  #title {
+    background-size: 100% auto;
+  }
+}
+@media screen and (max-width: 991px) {
+  #title {
+    padding: 30px 20px;
+  }
+}
+@media screen and (max-width: 576px) {
+  #title {
+    background-size: 100% 100% !important;
+  }
+}

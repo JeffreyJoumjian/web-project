@@ -24,7 +24,7 @@ body {
 .sidebar {
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
-    url(../img/sign-in-background.jpg);
+    url(../img/backgrounds/sign-in-background.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

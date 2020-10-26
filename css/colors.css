@@ -2,4 +2,7 @@
   --primary-red: rgb(231, 16, 16);
   --secondary-grey: rgb(241, 241, 241);
   --secondary-grey-dark: rgb(196, 196, 196);
+  --primary-red-dark: rgb(156, 9, 9);
+  --primary-red-darker: rgb(59, 6, 6);
+  --primary-red-darkest: rgb(27, 1, 1);
 }

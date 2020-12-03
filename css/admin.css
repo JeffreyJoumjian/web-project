@@ -187,6 +187,11 @@ select:focus {
   min-width: 100px;
 }
 
+.modal input,
+.modal textarea {
+  min-width: 250px !important;
+}
+
 .card-body {
   min-height: 200px;
   max-height: 200px;

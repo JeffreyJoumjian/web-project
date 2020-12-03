@@ -1,15 +1,15 @@
-const editModal = document.querySelector('#editMenuItemModal');
-const deleteModal = document.querySelector('#deleteMenuItemModal');
-const addModal = document.querySelector('#addMenuItemModal');
+const editModal = document.querySelector('#editItemModal');
+const deleteModal = document.querySelector('#deleteItemModal');
+const addModal = document.querySelector('#addItemModal');
 
 const btnShowEditModal = document.querySelector('#btnEditModal');
 const btnShowDeleteModal = document.querySelector('#btnDeleteModal');
 const btnShowAddModal = document.querySelector('#btnAddModal');
 
 const editModalItems = {
-	pizzaNameInput: editModal.querySelector('#inpName'),
-	pizzaPriceInput: editModal.querySelector('#inpPrice'),
-	pizzaIngredientsInput: editModal.querySelector('#inpIngredients'),
+	nameInput: editModal.querySelector('#inpName'),
+	priceInput: editModal.querySelector('#inpPrice'),
+	ingredientsInput: editModal.querySelector('#inpIngredients'),
 	btnModalSave: editModal.querySelector('#btn-save'),
 	btnModalClose: editModal.querySelector('#btnClose')
 }
@@ -20,14 +20,12 @@ const deleteModalItems = {
 }
 
 const addModalItems = {
-	pizzaNameInput: addModal.querySelector('#inpName'),
-	pizzaPriceInput: addModal.querySelector('#inpPrice'),
-	pizzaIngredientsInput: addModal.querySelector('#inpIngredients'),
+	nameInput: addModal.querySelector('#inpName'),
+	priceInput: addModal.querySelector('#inpPrice'),
+	ingredientsInput: addModal.querySelector('#inpIngredients'),
 	btnModalAdd: addModal.querySelector('#btn-add'),
 	btnModalClose: addModal.querySelector('#btnClose')
 }
-
-
 
 let selectedItem;
 
@@ -44,7 +42,7 @@ function setUpListeners() {
 	const btnAdd = document.querySelector('#btnAdd');
 	btnAdd.addEventListener('click', () => {
 		// clear inputs
-		[addModalItems.pizzaNameInput, addModalItems.pizzaPriceInput, addModalItems.pizzaIngredientsInput].forEach(input => input.value = '');
+		[addModalItems.nameInput, addModalItems.priceInput, addModalItems.ingredientsInput].forEach(input => input.value = '');
 		btnShowAddModal.click();
 	})
 
@@ -53,7 +51,7 @@ function setUpListeners() {
 function setUpModalListeners() {
 	editModalItems.btnModalSave.addEventListener('click', (e) => {
 
-		let isEmpty = [editModalItems.pizzaNameInput, editModalItems.pizzaPriceInput, editModalItems.pizzaIngredientsInput]
+		let isEmpty = [editModalItems.nameInput, editModalItems.priceInput, editModalItems.ingredientsInput]
 			.some(inp => inp.value === '');
 
 		if (!isEmpty) {
@@ -71,7 +69,7 @@ function setUpModalListeners() {
 	});
 
 	addModalItems.btnModalAdd.addEventListener('click', (e) => {
-		let isEmpty = [addModalItems.pizzaNameInput, addModalItems.pizzaPriceInput, addModalItems.pizzaIngredientsInput]
+		let isEmpty = [addModalItems.nameInput, addModalItems.priceInput, addModalItems.ingredientsInput]
 			.some(inp => inp.value === '');
 
 		if (!isEmpty) {
@@ -105,10 +103,9 @@ function updateModalFields(item) {
 	const itemPrice = parseFloat(item.querySelector('#price').innerText.replace('$', ''));
 	const itemIngredients = item.querySelector('#ingredients').innerText.trim();
 
-	console.log(itemPrice);
-	editModalItems.pizzaNameInput.value = itemName;
-	editModalItems.pizzaPriceInput.value = itemPrice >= 0 ? itemPrice.toFixed(2) : 0;
-	editModalItems.pizzaIngredientsInput.value = itemIngredients;
+	editModalItems.nameInput.value = itemName;
+	editModalItems.priceInput.value = itemPrice >= 0 ? itemPrice.toFixed(2) : 0;
+	editModalItems.ingredientsInput.value = itemIngredients;
 }
 
 function deleteItem(selectedItem) {
@@ -123,17 +120,17 @@ function saveItem(selectedItem) {
 	const itemIngredients = selectedItem.querySelector('#ingredients');
 
 
-	itemName.innerText = editModalItems.pizzaNameInput.value.trim();
-	itemPrice.innerText = `$${parseFloat(editModalItems.pizzaPriceInput.value).toFixed(2)}`;
-	itemIngredients.innerText = editModalItems.pizzaIngredientsInput.value;
+	itemName.innerText = editModalItems.nameInput.value.trim();
+	itemPrice.innerText = `$${parseFloat(editModalItems.priceInput.value).toFixed(2)}`;
+	itemIngredients.innerText = editModalItems.ingredientsInput.value;
 }
 
 function addItem() {
 	const menuItems = document.querySelector('.menu-items');
 
-	const name = addModalItems.pizzaNameInput.value.trim();
-	const price = parseFloat(addModalItems.pizzaPriceInput.value).toFixed(2);
-	const ingredients = addModalItems.pizzaIngredientsInput.value.trim();
+	const name = addModalItems.nameInput.value.trim();
+	const price = parseFloat(addModalItems.priceInput.value).toFixed(2);
+	const ingredients = addModalItems.ingredientsInput.value.trim();
 
 	const newItemHTML = `
 	              <div class="card card-common">

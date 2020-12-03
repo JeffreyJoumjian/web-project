@@ -30,7 +30,8 @@
         <div class="row">
           <!-- Sidebar -->
           <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
-            <a href="#" class="navbar-brand text-white display-block mx-auto text-center py-3 mb-4 bottom-border">Our
+            <a href="./home.html"
+              class="navbar-brand text-white display-block mx-auto text-center py-3 mb-4 bottom-border">Our
               Pizzeria </a>
             <div class="bottom-border pb-3">
               <img src="../img/dashboard/admin.jpeg" width="50" height="50" class="rounded-circle mr-3"
@@ -103,34 +104,37 @@
   <!--Beginning of Users Table-->
   <div class="col-xl-10 col-lg-9 col-md-8 ml-auto  mt-5" id="users">
     <div class="text-left mr-40">
-      <button type="button" id="addUser" onclick="addUser()" class="btn btn-warning text-white auto-mx">Add
-        User</button>
+      <!-- Button trigger add modal -->
+      <button type="button" class="btn btn-success auto-mx" id="btnAdd">
+        Add User
+      </button>
+
     </div>
     <h3 class="text-muted text-center mb-3">Users</h3>
-    <table id="mytable" class="table table-striped table-dark">
+    <table class="table table-striped table-dark">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">Address</th>
-          <th scope="col">Phone Number</th>
-          <th scope="col">Options</th>
+          <th scope="col" colspan="1">Name</th>
+          <th scope="col" colspan="1">Email</th>
+          <th scope="col" colspan="2">Address</th>
+          <th scope="col" colspan="1">Phone Number</th>
+          <th scope="col" colspan="1">Options</th>
         </tr>
       </thead>
-      <tbody>
-        <tr id="row1">
-          <th id="num1" scope="row">1</th>
-          <td id="Fname1">Mark</td>
-          <td id="Lname1">Otto</td>
-          <td id="Address1">Beirut</td>
-          <td id="Phone1">03 456 782</td>
-          <td id="btn1"><button type="button" id="EditUser1" onclick="EditUser(1)"
-              class="btn btn-success btn-sm">Edit</button>
-            <button type="button" id="DeleteUser1" onclick="DeleteUser(1)" class="btn btn-danger btn-sm">Delete</button>
+      <tbody id="users">
+        <tr id="row" class="user">
+          <th id="num" scope="row">1</th>
+          <td id="name" colspan="1">Mark Johnson</td>
+          <td id="email" colspan="1">Mark.Johnson@email.com</td>
+          <td id="address" colspan="2">Beirut</td>
+          <td id="phone" colspan="1">03456782</td>
+          <td id="options" colspan="1">
+            <button type="button" id="btnEdit" class="btn btn-success btn-sm">Edit</button>
+            <button type="button" id="btnDelete" class="btn btn-danger btn-sm">Delete</button>
           </td>
         </tr>
-        <tr id="row2">
+        <!-- <tr id="row2" class="user">
           <th id="num2" scope="row">2</th>
           <td id="Fname2">Jacob</td>
           <td id="Lname2">Thornton</td>
@@ -141,7 +145,7 @@
             <button type="button" id="DeleteUser2" onclick="DeleteUser(2)" class="btn btn-danger btn-sm">Delete</button>
           </td>
         </tr>
-        <tr id="row3">
+        <tr id="row3" class="user">
           <th id="num3" scope="row">3</th>
           <td id="Fname3">Larry</td>
           <td id="Lname3">the Bird</td>
@@ -162,7 +166,7 @@
               class="btn btn-success btn-sm">Edit</button>
             <button type="button" id="DeleteUser4" onclick="DeleteUser(4)" class="btn btn-danger btn-sm">Delete</button>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
 
@@ -186,6 +190,121 @@
   </footer> -->
   <!-- End of Footer -->
 
+  <!-- Button trigger edit modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editItemModal" id="btnEditModal">
+  </button>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="editItemModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="editForm">
+            <p>
+              <label for="name">Name: </label>
+              <input id="inpName" name="name" type="text" required>
+            </p>
+            <p>
+              <label for="email">Email: </label>
+              <input id="inpEmail" name="email" type="text" required>
+            </p>
+            <p>
+              <label for="phone">Phone Number: </label>
+              <input id="inpPhone" name="phone" type="number" required>
+            </p>
+            <p>
+              <label for="address">Address: </label>
+              <textarea name="address" id="inpAddress" required></textarea>
+            </p>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+              <button type="submit" class="btn btn-success" id="btn-save">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-success auto-mx" data-toggle="modal" data-target="#addItemModal"
+    id="btnAddModal">
+    Add User
+  </button>
+
+  <!-- add Modal -->
+  <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="addForm">
+            <p>
+              <label for="name">Name: </label>
+              <input id="inpName" name="name" type="text" required>
+            </p>
+            <p>
+              <label for="email">Email: </label>
+              <input id="inpEmail" name="email" type="text" required>
+            </p>
+            <p>
+              <label for="phone">Phone Number: </label>
+              <input id="inpPhone" name="phone" type="number" required>
+            </p>
+            <p>
+              <label for="address">Address: </label>
+              <textarea name="address" id="inpAddress" required></textarea>
+            </p>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+              <button type="submit" class="btn btn-success" id="btn-add">Add Pizza</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Button trigger delete modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteItemModal"
+    id="btnDeleteModal"></button>
+
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteItemModal" tabindex="-1" role="dialog" aria-labelledby="deleteItemModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete User?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Are you sure you want to delete <span class="item-name"></span>?</h6>
+          <form id="deleteForm">
+            <input id="itemName" type="text" hidden name="itemName">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+              <button type="submit" class="btn btn-danger" id="btn-delete">Delete</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -197,7 +316,7 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
   <script src="https://kit.fontawesome.com/e6491a4ae6.js" crossorigin="anonymous"></script>
-  <script src="../js/admin-dashboard.js"></script>
+  <script src="../js/adminDashboardUsers.js"></script>
 </body>
 
 </html>

@@ -26,7 +26,8 @@
       <div class="row">
         <!-- Sidebar -->
         <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
-          <a href="#" class="navbar-brand text-white display-block mx-auto text-center py-3 mb-4 bottom-border">Our
+          <a href="./home.html"
+            class="navbar-brand text-white display-block mx-auto text-center py-3 mb-4 bottom-border">Our
             Pizzeria </a>
           <div class="bottom-border pb-3">
             <img src="../img/dashboard/cust5.jpeg" width="50" height="50" class="rounded-circle mr-3"
@@ -45,12 +46,32 @@
             </li>
 
             <li class="nav-item">
-              <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i
-                  class="fas fa-sign-out-alt text-danger fa-lg mr-3"></i>Sign Out</a>
+              <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link" data-toggle="modal"
+                data-target="#sign-out"><i class="fas fa-sign-out-alt text-danger fa-lg mr-3"></i>Sign Out</a>
             </li>
           </ul>
         </div>
         <!-- End of Sidebar -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="sign-out">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Want to leave?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                Press Logout to leave
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Log Out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Modal -->
 
         <!-- Top Nav -->
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
@@ -127,19 +148,6 @@
 </div>
 </table>
 </div>
-<!--End of User Table-->
-
-<!--End of My Orders-->
-
-
-
-
-
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
 </script>

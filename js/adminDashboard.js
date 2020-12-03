@@ -158,6 +158,6 @@ function addItem() {
 	const newItemElement = document.createElement('div');
 	newItemElement.classList.add("col-xl-3", "col-sm-6", "p-2", "menu-item");
 	newItemElement.innerHTML = newItemHTML;
-
+	addItemEventListeners(newItemElement);
 	menuItems.appendChild(newItemElement);
 }

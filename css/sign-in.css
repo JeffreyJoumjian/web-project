@@ -407,14 +407,14 @@ input:valid + label {
 .label-group.error-password-up,
 .label-group.error-name-up,
 .label-group.error-phone-up,
-.label-group.error-date-up,
+.label-group.error-address-up,
 .label-group.error-email-in,
 .label-group.error-password-in {
   margin-bottom: 12px;
 }
 
 .label-group.error-phone-up i,
-.label-group.error-date-up i,
+.label-group.error-address-up i,
 .label-group.error-email-up i,
 .label-group.error-password-up i,
 .label-group.error-name-up i,
@@ -430,9 +430,9 @@ input:valid + label {
 }
 
 .label-group.error-phone-up.empty::after,
-.label-group.error-date-up.empty::after,
+.label-group.error-address-up.empty::after,
 .label-group.error-phone-up.invalid::after,
-.label-group.error-date-up.invalid::after,
+.label-group.error-address-up.invalid::after,
 .label-group.error-name-up.empty::after,
 .label-group.error-name-up.lt5::after,
 .label-group.error-name-up.invalid::after,
@@ -463,14 +463,9 @@ input:valid + label {
   z-index: 2;
   right: 12px;
 }
-/* date */
-.label-group.error-date-up.empty.label-group::after {
-  content: "date cannot be empty" !important;
-  opacity: 1 !important;
-  z-index: 2;
-}
-.label-group.error-date-up.invalid.label-group::after {
-  content: "you must be at least 18 years old" !important;
+/* address */
+.label-group.error-address-up.empty.label-group::after {
+  content: "address cannot be empty" !important;
   opacity: 1 !important;
   z-index: 2;
 }

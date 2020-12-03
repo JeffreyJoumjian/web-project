@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/admin.css">
+  <link rel="stylesheet" href="../css/admin.css">
   <link rel="icon" href="../img/homepage/pizzalogo.jpg">
   <title>Admin Dashboard</title>
 </head>
@@ -77,7 +77,7 @@
   <!-- End of Navbar -->
 
 
-  <!-- Modal -->
+  <!-- Sign Out Modal -->
   <div class="modal fade" id="sign-out">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -98,32 +98,51 @@
   <!-- End of Modal -->
 
 
+
+
   <!-- Cards -->
   <section>
     <div class="container-fluid" id="menu-items">
       <div class="row">
         <div class="col-xl-10 col-md-8 col-lg-9 ml-auto">
-          <div class="row pt-md-5 mt-md-3 mb-5">
-            <div id="card1" class="col-xl-3 col-sm-6 p-2">
+          <div class="row pt-md-5 mt-md-3 mb-5 menu-items">
+            <div id="addItem" class="col-xl-3 col-sm-6 p-2">
+              <div class="card card-common">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                  <div class="">
+                    <div id="addParent" class=" text-secondary text-center">
+                      <i id="plus" class="fas fa-plus fa-3x text-warning mx-auto my-auto"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer text-secondary">
+                  <div id="parentbtn" class="text-center AddDiv">
+                    <button type="button" id="btnAdd" class="btn btn-success">Add Item</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card1" class="col-xl-3 col-sm-6 p-2 menu-item">
               <div class="card card-common">
                 <div class="card-body">
-                  <div class="d-flex justify-content-between">
+                  <div class="d-flex justify-content-center">
                     <div class="text-secondary text-center">
-                      <h5 id="name1">Pepperoni Pizza</h5>
-                      <h6 id="price1"></h6>Price: $10</h6>
-                      <h6 id="description1">Ingredients: Mozarella Cheese, Pepperoni, Tomato Sauce</h6>
+                      <h5 id="name">Pepperoni Pizza</h5>
+                      <h4 id="price">$6.99</h4>
+                      <h6 id="ingredients">Mozarella Cheese, Pepperoni, Tomato Sauce</h6>
                     </div>
                   </div>
                 </div>
                 <div class="card-footer text-secondary">
                   <div class="text-center">
-                    <button type="button" id="edit1" onclick="EditItem(1)" class="btn btn-success">Edit</button>
-                    <button type="button" id="delete1" onclick="DeleteItem(1)" class="btn btn-danger">Delete</button>
+                    <button type="button" id="btnEdit" class="btn btn-success">Edit</button>
+                    <button type="button" id="btnDelete" class="btn btn-danger">Delete</button>
                   </div>
                 </div>
               </div>
             </div>
-            <div id="card2" class="col-xl-3 col-sm-6 p-2">
+            <!-- 
+              <div id="card2" class="col-xl-3 col-sm-6 p-2">
               <div class="card card1 card-common">
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
@@ -256,37 +275,127 @@
                 </div>
               </div>
             </div>
-            <div id="card9" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div id="addParent" class=" text-secondary text-center">
-                      <i id="plus" class="fas fa-plus fa-3x text-warning mx-auto"></i>
-                    </div>
-                  </div>
-                  <div class="card-footer text-secondary">
-                    <div id="parentbtn" class="text-center AddDiv">
-                      <button type="button" onclick="AddItem()" id="add" class="btn btn-success">Add Item</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          -->
 
-
-            </div>
           </div>
         </div>
       </div>
+    </div>
   </section>
   <!-- End of Cards -->
 
+  <!-- Button trigger edit modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editMenuItemModal" id="btnEditModal">
+  </button>
 
+  <!-- Edit Modal -->
+  <div class="modal fade" id="editMenuItemModal" tabindex="-1" role="dialog" aria-labelledby="editMenuItemModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit Pizza</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="editForm">
+            <p>
+              <label for="name">Name: </label>
+              <input id="inpName" name="name" type="text" required>
+            </p>
+            <p>
+              <label for="name">Price: </label>
+              <input id="inpPrice" name="price" type="number" required>
+            </p>
+            <p>
+              <label for="name">Ingredients: </label>
+              <textarea name="ingredients" id="inpIngredients" cols="30" rows="4" required></textarea>
+
+            </p>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+              <button type="submit" class="btn btn-success" id="btn-save">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <!--End of User Table-->
+  <!-- Button trigger add modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMenuItemModal" id="btnAddModal">
+  </button>
+
+  <!-- add Modal -->
+  <div class="modal fade" id="addMenuItemModal" tabindex="-1" role="dialog" aria-labelledby="addMenuItemModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Pizza</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="addForm">
+            <p>
+              <label for="name">Name: </label>
+              <input id="inpName" name="name" type="text" required>
+            </p>
+            <p>
+              <label for="name">Price: </label>
+              <input id="inpPrice" name="price" type="number" required>
+            </p>
+            <p>
+              <label for="name">Ingredients: </label>
+              <textarea name="ingredients" id="inpIngredients" cols="30" rows="4" required></textarea>
+
+            </p>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+              <button type="submit" class="btn btn-success" id="btn-add">Add Pizza</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Button trigger delete modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteMenuItemModal"
+    id="btnDeleteModal"></button>
+
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteMenuItemModal" tabindex="-1" role="dialog" aria-labelledby="deleteMenuItemModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete Pizza?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Are you sure you want to delete <span class="item-name"></span>?</h6>
+          <form id="deleteForm">
+            <input id="itemName" type="text" hidden name="itemName">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+              <button type="submit" class="btn btn-danger" id="btn-delete">Delete</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
   <!-- Footer -->
-  <footer>
+  <!-- <footer>
     <div class="container-fluid">
       <div class="row">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
@@ -298,7 +407,7 @@
         </div>
       </div>
     </div>
-  </footer>
+  </footer> -->
   <!-- End of Footer -->
 
 
@@ -312,7 +421,8 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
   <script src="https://kit.fontawesome.com/e6491a4ae6.js" crossorigin="anonymous"></script>
-  <script src="../js/admin-dashboard.js"></script>
+  <!-- <script src="../js/admin-dashboard.js"></script> -->
+  <script src="../js/adminDashboard.js"></script>
 </body>
 
 </html>

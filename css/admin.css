@@ -183,8 +183,12 @@ select:focus {
     line-height: 18px;
   }
 }
-/* CSS for Edit Profile ends here*/
+.modal label {
+  min-width: 100px;
+}
 
-/* CSS for My Orders begins here*/
-
-/* CSS for My Orders ends here*/
+.card-body {
+  min-height: 200px;
+  max-height: 200px;
+  height: 200px;
+}

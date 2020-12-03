@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8">
+  <meta name="description" content="The Best Authentic Pizza Experience in Lebanon">
+  <meta name="author" content="Jeffrey Adrian Joumjian | Maria Kantardjian | Reem Saado">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/admin.css">
-  <script src="admin-dashboard.js"></script>
-
+  <link rel="icon" href="../img/homepage/pizzalogo.jpg">
   <title>Admin Dashboard</title>
 </head>
 
@@ -37,25 +38,17 @@
               <a href="#" class="text-white">Admin</a>
             </div>
             <ul class="navbar-nav flex-column mt-4">
-              <li class="nav-item">
-                <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link current"><i
-                    class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a>
-              </li>
-              <!-- 
-              <li class="nav-item">
-                <a href="" class="nav-link text-white p-3 mb-2 sidebar-link"><i
-                    class="fas fa-user text-light fa-lg mr-3"></i>Profile</a>
-              </li> -->
 
               <li class="nav-item">
-                <a href="#menu-items" class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link current"><i
+                    class="fas fa-users text-light fa-lg mr-3"></i>Users</a>
+              </li>
+
+              <li class="nav-item">
+                <a href="./admin-menu-items.html" class="nav-link text-white p-3 mb-2 sidebar-link"><i
                     class="fas fa-table text-light fa-lg mr-3"></i>Menu Items</a>
               </li>
 
-              <li class="nav-item">
-                <a href="#users" class="nav-link text-white p-3 mb-2 sidebar-link"><i
-                    class="fas fa-users text-light fa-lg mr-3"></i>Users</a>
-              </li>
             </ul>
           </div>
           <!-- End of Sidebar -->
@@ -107,192 +100,10 @@
   <!-- End of Modal -->
 
 
-  <!-- Cards -->
-  <section>
-    <div class="container-fluid" id="menu-items">
-      <div class="row">
-        <div class="col-xl-10 col-md-8 col-lg-9 ml-auto">
-          <div class="row pt-md-5 mt-md-3 mb-5">
-            <div id="card1" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div class="text-secondary text-center">
-                      <h5 id="name1">Pepperoni Pizza</h5>
-                      <h6 id="price1"></h6>Price: $10</h6>
-                      <h6  id="description1">Ingredients: Mozarella Cheese, Pepperoni, Tomato Sauce</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div class="text-center">
-                    <button type="button" id= "edit1" onclick="EditItem(1)"class="btn btn-success" >Edit</button>
-                    <button type="button" id="delete1" onclick="DeleteItem(1)"class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="card2" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card1 card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div class="text-secondary text-center">
-                      <h5 id="name2">Margherita</h5>
-                      <h6 id="price2">Price: $8</h6>
-                      <h6 id="description2">Ingredients: Mozarella Cheese, Basil, Olive Pizza Sauce</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div class="text-center">
-                    <button type="button" id="edit2" onclick="EditItem(2)"class="btn btn-success">Edit</button>
-                    <button type="button" id="delete2" onclick="DeleteItem(2)"class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="card3" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div class="text-secondary text-center">
-                      <h5 id="name3">Four Cheese Pizza</h5>
-                      <h6 id="price3">Price: $8</h6>
-                      <h6 id="description3">Ingredients: Mozarella Cheese, Parmesan, Provolone, Blue Cheese</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div class="text-center">
-                    <button type="button" id="edit3" onclick="EditItem(3)"class="btn btn-success">Edit</button>
-                    <button type="button" id="delete3" onclick="DeleteItem(3)"class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="card4" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div class="text-secondary text-center">
-                      <h5 id="name4">Cheese & Garlic Pizza</h5>
-                      <h6 id="price4">Price: $7</h6>
-                      <h6 id="description4">Ingredients: Mozarella Cheese, Garlic, Oregano, Pizza Sauce</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div class="text-center">
-                    <button type="button" id="edit4" onclick="EditItem(4)" class="btn btn-success">Edit</button>
-                    <button type="button" id="delete4" onclick="DeleteItem(4)" class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="card5" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div class="text-secondary text-center">
-                      <h5 id="name5">Neapolitan Pizza</h5>
-                      <h6 id="price5">Price: $10</h6>
-                      <h6 id="description5">Ingredients: Mozarella Cheese, Tomatoes, Basil, Pizza Sauce</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div class="text-center">
-                    <button type="button" id="edit5" onclick="EditItem(5)" class="btn btn-success">Edit</button>
-                    <button type="button" id="delete5" onclick="DeleteItem(5)"class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="card6" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div class=" text-secondary text-center">
-                      <h5 id="name6">New York-Style Pizza</h5>
-                      <h6 id="price6">Price: $6</h6>
-                      <h6 id="description6">>Ingredients: Mozarella Cheese, Tomatoes, Pizza Sauce</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div class="text-center">
-                    <button type="button" id="edit6" onclick="EditItem(6)"class="btn btn-success">Edit</button>
-                    <button type="button" id="delete6" onclick="DeleteItem(6)"class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="card7" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div class="text-secondary text-center">
-                      <h5 id="name7">Detroit Pizza</h5>
-                      <h6 id="price7">Price: $10</h6>
-                      <h6 id="description7">Ingredients: Mozarella Cheese, Mushrooms, Pepperoni, Pizza Sauce</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div class="text-center">
-                    <button type="button" id="edit7" onclick="EditItem(7)" class="btn btn-success">Edit</button>
-                    <button type="button" id="delete7" onclick="DeleteItem(7)" class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="card8" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div class=" text-secondary text-center">
-                      <h5 name="name8">Greek Pizza</h5>
-                      <h6 name="price8">Price: $13</h6>
-                      <h6 name="description8">Ingredients: Feta Cheese, Olives, Roasted Red Pepper, Pizza Sauce</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div class="text-center">
-                    <button type="button" id="edit8" onclick="EditItem(8)" class="btn btn-success">Edit</button>
-                    <button type="button" id="delete8" onclick="DeleteItem(8)" class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="card9" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div id="addParent" class=" text-secondary text-center">
-                    <i id="plus" class="fas fa-plus fa-3x text-warning mx-auto"></i>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div id="parentbtn" class="text-center AddDiv">
-                    <button type="button" onclick="AddItem()" id="add" class="btn btn-success">Add Item</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End of Cards -->
-
   <!--Beginning of Users Table-->
   <div class="col-xl-10 col-lg-9 col-md-8 ml-auto" id="users">
     <h3 class="text-muted text-center mb-3">Users</h3>
-    <table id ="mytable" class="table table-striped table-dark">
+    <table id="mytable" class="table table-striped table-dark">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -310,8 +121,9 @@
           <td id="Lname1">Otto</td>
           <td id="Address1">Beirut</td>
           <td id="Phone1">03 456 782</td>
-          <td id="btn1"><button type="button" id="EditUser1" onclick="EditUser(1)"class="btn btn-success btn-sm">Edit</button>
-            <button type="button" id="DeleteUser1" onclick="DeleteUser(1)"class="btn btn-danger btn-sm">Delete</button>
+          <td id="btn1"><button type="button" id="EditUser1" onclick="EditUser(1)"
+              class="btn btn-success btn-sm">Edit</button>
+            <button type="button" id="DeleteUser1" onclick="DeleteUser(1)" class="btn btn-danger btn-sm">Delete</button>
           </td>
         </tr>
         <tr id="row2">
@@ -320,8 +132,9 @@
           <td id="Lname2">Thornton</td>
           <td id="Address2">Ashrafieh</td>
           <td id="Phone2">71 672 904</td>
-          <td id="btn2"><button type="button"id="EditUser2" onclick="EditUser(2)"class="btn btn-success btn-sm">Edit</button>
-            <button type="button" id="DeleteUser2" onclick="DeleteUser(2)"class="btn btn-danger btn-sm">Delete</button>
+          <td id="btn2"><button type="button" id="EditUser2" onclick="EditUser(2)"
+              class="btn btn-success btn-sm">Edit</button>
+            <button type="button" id="DeleteUser2" onclick="DeleteUser(2)" class="btn btn-danger btn-sm">Delete</button>
           </td>
         </tr>
         <tr id="row3">
@@ -330,7 +143,8 @@
           <td id="Lname3">the Bird</td>
           <td id="Address3">Zalka</td>
           <td id="Phone3">76 924 689</td>
-          <td id="btn3"><button type="button" id="EditUser3" onclick="EditUser(3)" class="btn btn-success btn-sm">Edit</button>
+          <td id="btn3"><button type="button" id="EditUser3" onclick="EditUser(3)"
+              class="btn btn-success btn-sm">Edit</button>
             <button type="button" id="DeleteUser3" onclick="DeleteUser(3)" class="btn btn-danger btn-sm">Delete</button>
           </td>
         </tr>
@@ -340,7 +154,8 @@
           <td id="Lname4">Doe</td>
           <td id="Address4">Beirut</td>
           <td id="Phone4">76 424 699</td>
-          <td id="btn4"><button type="button" id="EditUser4" onclick="EditUser(4)" class="btn btn-success btn-sm">Edit</button>
+          <td id="btn4"><button type="button" id="EditUser4" onclick="EditUser(4)"
+              class="btn btn-success btn-sm">Edit</button>
             <button type="button" id="DeleteUser4" onclick="DeleteUser(4)" class="btn btn-danger btn-sm">Delete</button>
           </td>
         </tr>
@@ -352,37 +167,7 @@
   </div>
 
 
-  <!-- Beginning of Pagination -->
-  <nav>
-    <ul class="pagination justify-content-center">
-      <li class="page-item">
-        <a href="#" class="page-link py-2 px-3">
-          <span>&laquo;</span>
-        </a>
-      </li>
-      <li class="page-item active">
-        <a href="#" class="page-link py-2 px-3">
-          1
-        </a>
-      </li>
-      <li class="page-item">
-        <a href="#" class="page-link py-2 px-3">
-          2
-        </a>
-      </li>
-      <li class="page-item">
-        <a href="#" class="page-link py-2 px-3">
-          3
-        </a>
-      </li>
-      <li class="page-item">
-        <a href="#" class="page-link py-2 px-3">
-          <span>&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- End of Pagination -->
+
   </div>
   <!--End of User Table-->
 
@@ -414,7 +199,7 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
   <script src="https://kit.fontawesome.com/e6491a4ae6.js" crossorigin="anonymous"></script>
-  <script src="script.js"></script>
+  <script src="../js/admin-dashboard.js"></script>
 </body>
 
 </html>

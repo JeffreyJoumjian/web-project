@@ -197,3 +197,7 @@ select:focus {
   max-height: 200px;
   height: 200px;
 }
+
+#users .btn {
+  width: 75px;
+}

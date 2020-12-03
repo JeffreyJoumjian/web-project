@@ -38,7 +38,7 @@ function setUpAddListeners() {
 		const btnAdd = pizza.querySelector('.item-btn-add');
 
 		btnAdd.addEventListener('click', () => {
-			addToOrder(pizza, false);
+			orderFunctions.addToOrder(pizza, false);
 		});
 	})
 }

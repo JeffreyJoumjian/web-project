@@ -487,10 +487,11 @@ nav {
   color: var(--primary-red);
 }
 
+.order-item .item-name {
+  font-family: "Oregano", cursive;
+}
 .order-item .item-name,
 .order-item .item-price {
-  /* font-family: "Oregano", cursive; */
-  font-style: italic;
   font-weight: bold;
   font-size: 20px;
 }
@@ -534,7 +535,6 @@ nav {
 .order-total-price {
   color: var(--primary-red);
   margin-left: 145px;
-  font-style: italic;
 }
 
 .order-btns button {

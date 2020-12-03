@@ -229,10 +229,11 @@ nav {
   color: var(--primary-red);
 }
 
+.item-name {
+  font-family: "Oregano", cursive;
+}
 .item-name,
 .item-price {
-  font-family: "Oregano", cursive;
-  font-style: italic;
   font-weight: bold;
   font-size: 20px;
 }
@@ -270,13 +271,25 @@ nav {
 .order-total {
   padding-left: 60px;
   padding-right: 50px;
+}
+
+.order-total h2 {
   font-family: "Oregano", cursive;
 }
 
-.order-total-price {
+.order-total span,
+.order-details-total-price {
+  font-family: "Roboto", sans-serif;
+}
+
+.order-total-price,
+.order-details-total-price {
   color: var(--primary-red);
+  font-size: 40px;
+}
+
+.order-total-price {
   margin-left: 190px;
-  font-style: italic;
 }
 
 .order-btns {

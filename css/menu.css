@@ -256,6 +256,10 @@ nav {
   color: white;
 }
 
+.menu-item .size p {
+  pointer-events: none;
+}
+
 .menu-item .item-img {
   margin-top: 15px;
   margin-bottom: 10px;
@@ -417,8 +421,8 @@ nav {
 }
 
 .order-items {
-  overflow-y: hidden;
-  overflow-x: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
   height: 500px;
   width: 100%;
   margin-top: 50px;
@@ -443,6 +447,20 @@ nav {
 .order-item .item-add,
 .order-item .item-delete {
   display: inline-block !important;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.order-item .item-add i,
+.order-item .item-remove i,
+.order-item .item-delete i,
+.order-item .item-count {
+  pointer-events: none;
+}
+
+.item-count-btns {
+  user-select: none;
+  -moz-user-select: none;
 }
 
 .order-item .item-img {
@@ -470,7 +488,7 @@ nav {
 
 .order-item .item-name,
 .order-item .item-price {
-  font-family: "Oregano", cursive;
+  /* font-family: "Oregano", cursive; */
   font-style: italic;
   font-weight: bold;
   font-size: 20px;
@@ -509,7 +527,7 @@ nav {
 .order-total {
   padding-left: 60px;
   padding-right: 50px;
-  font-family: "Oregano", cursive;
+  /* font-family: "Oregano", cursive; */
 }
 
 .order-total-price {

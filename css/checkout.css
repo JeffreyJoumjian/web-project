@@ -165,6 +165,7 @@ nav {
 .order-items {
   overflow-y: scroll;
   min-height: 450px;
+  max-height: 450px;
   width: 100%;
   margin-top: 20px;
   list-style: none;
@@ -181,14 +182,27 @@ nav {
   /* border-top: 1px solid var(--secondary-grey); */
   border-bottom: 1px solid var(--secondary-grey);
 }
-
 .order-item .item-name,
 .order-item .item-price,
 .order-item .item-remove,
 .order-item .item-count,
 .order-item .item-add,
 .order-item .item-delete {
-  display: inline-block;
+  display: inline-block !important;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.order-item .item-add i,
+.order-item .item-remove i,
+.order-item .item-delete i,
+.order-item .item-count {
+  pointer-events: none;
+}
+
+.item-count-btns {
+  user-select: none;
+  -moz-user-select: none;
 }
 
 .item-img {

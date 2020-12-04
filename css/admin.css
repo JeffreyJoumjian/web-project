@@ -198,6 +198,6 @@ select:focus {
   height: 200px;
 }
 
-#users .btn {
+tbody .btn {
   width: 75px;
 }

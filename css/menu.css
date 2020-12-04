@@ -276,6 +276,8 @@ nav {
 .menu-item .item-desc {
   margin-bottom: 10px;
   width: 80%;
+  overflow-y: scroll;
+  height: 100px;
 }
 
 .menu-item .item-price {
@@ -534,7 +536,7 @@ nav {
 
 .order-total-price {
   color: var(--primary-red);
-  margin-left: 145px;
+  margin-left: 100px;
 }
 
 .order-btns button {

@@ -52,21 +52,19 @@ export function changeOrderItemPrice(e, operation) {
 }
 
 // TODO increment duplicate items instead of adding them seperately
-// TODO change image based on selected pizza
 export function addToOrder(pizza, localStorage) {
 	const orderItems = document.querySelector('.order-items');
 
-	let name, price, size, count = 1;
+	let name, price, size, imgSrc, count = 1;
 	if (localStorage) {
-		name = pizza.name;
-		price = pizza.price;
+		({ name, price, count, imgSrc } = pizza);
 		size = "";
-		count = pizza.count;
 	}
 	else {
 		name = pizza.querySelector('.item-name').innerText
 		price = pizza.querySelector('.item-price').innerText.replace('$', '');
 		size = pizza.querySelector('.size.active').innerText;
+		imgSrc = pizza.querySelector('.item-img').src;
 	}
 
 	const newPizzaElement = document.createElement('li');
@@ -74,13 +72,13 @@ export function addToOrder(pizza, localStorage) {
 
 	const newItem = `
 				<div class="item-img">
-							<img src="../img/pizza/pizza-12.png" width="100px" height="100px" alt="">
+							<img src="${imgSrc}" width="100px" height="100px" alt="">
 						</div>
 
 						<div class="item-desc">
 							<div class="item-head">
 								<p class="item-name">${name} ${size}</p>
-								<p class="item-price" data-price="6.99">$${price}</p>
+								<p class="item-price" data-price="${price}">$${price}</p>
 							</div>
 
 							<div class="item-count-btns">
@@ -136,7 +134,8 @@ export function saveItemsInStorage() {
 		const item = {
 			name: orderItem.querySelector('.item-name').innerText,
 			price: orderItem.querySelector('.item-price').innerText.replace('$', ''),
-			count: orderItem.querySelector('.item-count').innerText
+			count: orderItem.querySelector('.item-count').innerText,
+			imgSrc: orderItem.querySelector('.item-img img').src
 		}
 
 		items.push(item);

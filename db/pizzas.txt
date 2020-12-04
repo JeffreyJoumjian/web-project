@@ -1,0 +1,107 @@
+
+<?php
+require_once "./database.php";
+
+$db->query(
+    "INSERT INTO `MENU_ITEMS`( `name`, `price`, `ingredients`, `imgSrc`)
+VALUES(
+	`Pepperoni`,
+	6.99,
+	`Beef Pepperoni, Mozzarella & Signature Pizza Sauce`,
+	`https://i.ibb.co/JrGskF3/pepperoni.png`
+	),
+VALUES(
+	`Veggie`,
+	6.99,
+	`Green Peppers, Onions, Mushrooms, Black Olives, Mozzarella & Signature Pizza Sauce`,
+	`https://i.ibb.co/RcC0mnP/veggie.png`
+	),
+VALUES(
+	`Chicken Legend BBQ`,
+	6.99,
+	`Grilled Chicken breast, Onions, Mozzarella, American cheese, Oregano and BBQ Sauce`,
+	`https://i.ibb.co/r3Q1fKH/chicken-legend-bbq.png`
+	),
+VALUES(
+	`Chicken Legend Ranch`,
+	6.99,
+	`Grilled Chicken breast, Onions, Mozzarella, American cheese, Oregano and Ranch Sauce`,
+	`https://i.ibb.co/DrXQVH0/chicken-legend-ranch.png`
+	),
+VALUES(
+	`Margherita`,
+	6.99,
+	`A rich layer of 100% real Mozzarella cheese Enjoy it on its own…`,
+	`https://i.ibb.co/Qr0V8Gz/margherita.png`
+	),
+VALUES(
+	`Lebanese`,
+	6.99,
+	`Sliced Beef Ham, Fresh Mushrooms & Black Olives`,
+	`https://i.ibb.co/H25rZ8T/lebanese.png`
+	),
+VALUES(
+	`Tex Mex`,
+	6.99,
+	`Grilled Chicken breast, Topped with Onions, Black Olives, Green Peppers, Mozzarella & Signature Pizza Sauce Spice it Up with Jalapeno`,
+	`https://i.ibb.co/PFCzydp/tex-mex.png`
+	),
+VALUES(
+	`Philly Cheese Steak`,
+	6.99,
+	`Slices of Beef Steak, Onions, Green Peppers & Fresh Mushrooms with Slices Cheese`,
+	`https://i.ibb.co/m4yfvGX/philly-cheese-steak.png`
+	),
+VALUES(
+	`Extravaganzza`,
+	6.99,
+	`Mozzarella cheese, Pizza Sauce, Pepperoni, Onions, Green Pepper, Black Olives, Mushrooms, Beef, Italian sausage`,
+	`https://i.ibb.co/CJtXhj9/extravaganzza.png`
+	),
+VALUES(
+	`Alfredo`,
+	6.99,
+	`Original Alfredo Sauce, Grilled Chicken Breast Pieces, Mozzarella Cheese, Slices of Fresh Mushroom`,
+	`https://i.ibb.co/7VQ1bWf/alfredo.png`
+	),
+VALUES(
+	`Hawaiian`,
+	6.99,
+	`Beef Pepperoni, Hawaiian Pineapple, Mozzarella & Signature Pizza Sauce`,
+	`https://i.ibb.co/PZSsVCC/hawaiian.png`
+	),
+VALUES(
+	`Memphis BBQ`,
+	6.99,
+	`Grilled chicken, BBQ sauce, Green Peppers and Onion`,
+	`https://i.ibb.co/hmPgQT6/memphis-bbq.png`
+	),
+VALUES(
+	`Deluxe`,
+	6.99,
+	`Beef Pepperoni, Crumbles of Italian Sausage, Green Peppers, Fresh Mushrooms & Onions`,
+	`https://i.ibb.co/1RsY0BC/deluxe.png`
+	),
+VALUES(
+	`Meatzza`,
+	6.99,
+	`Beef pepperoni, Italian sausage, Beef and Signature Tomato Sauce`,
+	`https://i.ibb.co/6Xp1yvS/meatzza.png
+	),
+VALUES(
+	`Hot and Spicy`,
+	6.99,
+	`Beef, Onions, Green Pepper, Jalapenos, Mozzarella & Signature pizza Sauce`,
+	`https://i.ibb.co/pRfRxbS/hot-and-spciy.png`
+	),
+VALUES(
+	`Chicken Legend Spicy`,
+	6.99,
+	`Grilled Chicken breast, Onions, Mozzarella, American cheese, Oregano and Hot Sauce`,
+	`https://i.ibb.co/0C8Y8Rd/chicken-legend-spicy.png
+	)
+	"
+)
+
+?>
+

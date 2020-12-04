@@ -1,4 +1,4 @@
-let ID = 2;
+import { getUsersFromServer, sendUserToServer } from './serverFunctions.js';
 
 const editModal = document.querySelector('#editItemModal');
 const deleteModal = document.querySelector('#deleteItemModal');
@@ -13,6 +13,8 @@ const editModalItems = {
 	emailInput: editModal.querySelector('#inpEmail'),
 	addressInput: editModal.querySelector('#inpAddress'),
 	phoneInput: editModal.querySelector('#inpPhone'),
+	adminInputYes: editModal.querySelector('#inpAdminYes'),
+	adminInputNo: editModal.querySelector('#inpAdminNo'),
 	btnModalSave: editModal.querySelector('#btn-save'),
 	btnModalClose: editModal.querySelector('#btnClose')
 }
@@ -27,21 +29,29 @@ const addModalItems = {
 	emailInput: addModal.querySelector('#inpEmail'),
 	addressInput: addModal.querySelector('#inpAddress'),
 	phoneInput: addModal.querySelector('#inpPhone'),
+	adminInputYes: addModal.querySelector('#inpAdminYes'),
+	adminInputNo: addModal.querySelector('#inpAdminNo'),
 	btnModalAdd: addModal.querySelector('#btn-add'),
 	btnModalClose: addModal.querySelector('#btnClose')
 }
 
 let selectedItem;
+const userItems = document.querySelector('tbody#users');
 
 setUpListeners();
 
-function setUpListeners() {
-	const menuItems = [...document.querySelectorAll('.user')];
-	menuItems.forEach(item => {
-		addItemEventListeners(item);
-	});
+async function setUpListeners() {
 
-	setUpModalListeners();
+	const users = await getUsersFromServer();
+
+	if (users)
+		users.forEach(user => createUserItem(user));
+
+	setUpModalButtonListeners();
+}
+
+function setUpModalButtonListeners() {
+
 
 	const btnAdd = document.querySelector('#btnAdd');
 	btnAdd.addEventListener('click', () => {
@@ -55,9 +65,7 @@ function setUpListeners() {
 		btnShowAddModal.click();
 	})
 
-}
 
-function setUpModalListeners() {
 	editModalItems.btnModalSave.addEventListener('click', (e) => {
 
 		let isEmpty = [
@@ -117,22 +125,31 @@ function addItemEventListeners(item) {
 
 function updateModalFields(item) {
 
-
 	const userName = item.querySelector('#name').innerText;
 	const userEmail = item.querySelector('#email').innerText;
 	const userAddress = item.querySelector('#address').innerText;
 	const userPhone = item.querySelector('#phone').innerText;
+	const userAdmin = item.querySelector('#admin').innerText;
 
 	editModalItems.nameInput.value = userName;
 	editModalItems.emailInput.value = userEmail;
 	editModalItems.addressInput.value = userAddress;
 	editModalItems.phoneInput.value = parseInt(userPhone);
+	editModalItems.adminInputYes.checked = userAdmin === "Yes";
+	editModalItems.adminInputNo.checked = !editModalItems.adminInputYes.checked;
 
 }
 
-function deleteItem(selectedItem) {
-	// TODO remove from database as well
-	selectedItem.remove();
+async function deleteItem(selectedItem) {
+
+	let userToBeDeleted = {
+		_id: parseInt(selectedItem.querySelector('#_id').innerText.trim()),
+	}
+
+	userToBeDeleted = await sendUserToServer(userToBeDeleted, 'delete');
+
+	if (userToBeDeleted?.result)
+		selectedItem.remove();
 }
 
 // TODO update item in database
@@ -141,29 +158,45 @@ function saveItem(selectedItem) {
 	const userEmail = selectedItem.querySelector('#email');
 	const userAddress = selectedItem.querySelector('#address');
 	const userPhone = selectedItem.querySelector('#phone');
+	const userAdmin = selectedItem.querySelector('#admin');
 
 	userName.innerText = editModalItems.nameInput.value.trim();
 	userEmail.innerText = editModalItems.emailInput.value.trim();
 	userAddress.innerText = editModalItems.addressInput.value.trim();
 	userPhone.innerText = parseInt(editModalItems.phoneInput.value.trim()) > 0 ? editModalItems.phoneInput.value.trim() : 71000000;
+	userAdmin.innerText = editModalItems.adminInputYes.checked ? "Yes" : "No";
 
 }
 
-function addItem() {
-	const users = document.querySelector('tbody');
+async function addItem() {
 
-	const name = addModalItems.nameInput.value.trim();
-	const email = addModalItems.emailInput.value.trim();
-	const address = addModalItems.addressInput.value.trim();
-	const phone = parseInt(addModalItems.phoneInput.value.trim()) > 0 ? addModalItems.phoneInput.value.trim() : 71000000;
+	let newUser = {
+		name: addModalItems.nameInput.value.trim(),
+		email: addModalItems.emailInput.value.trim(),
+		address: addModalItems.addressInput.value.trim(),
+		phone: parseInt(addModalItems.phoneInput.value.trim()) > 0 ? addModalItems.phoneInput.value.trim() : 71000000,
+		isAdmin: addModalItems.adminInputYes.checked ? 1 : 0
+	}
+
+
+	newUser = await sendUserToServer(newUser, 'add');
+	console.log(newUser);
+	if (newUser?.result)
+		createUserItem(newUser.result);
+}
+
+function createUserItem(user) {
+	const { name, email, address, phone, isAdmin } = user;
+	const _id = user._id;
 
 	const newItemHTML = `
         <tr id="row" class="user">
-          <th id="num" scope="row">${ID++}</th>
+          <th id="_id" scope="row">${_id}</th>
           <td id="name" colspan="1">${name}</td>
           <td id="email" colspan="1">${email}</td>
           <td id="address" colspan="2">${address}</td>
           <td id="phone" colspan="1">${phone}</td>
+          <td id="admin" colspan="1">${isAdmin == true ? "Yes" : "No"}</td>
           <td id="options" colspan="1">
             <button type="button" id="btnEdit" class="btn btn-success btn-sm">Edit</button>
             <button type="button" id="btnDelete" class="btn btn-danger btn-sm">Delete</button>
@@ -175,5 +208,6 @@ function addItem() {
 	newItemElement.innerHTML = newItemHTML;
 	newItemElement = newItemElement.content.firstChild;
 	addItemEventListeners(newItemElement);
-	users.appendChild(newItemElement);
+	userItems.appendChild(newItemElement);
+
 }

@@ -119,54 +119,11 @@
           <th scope="col" colspan="1">Email</th>
           <th scope="col" colspan="2">Address</th>
           <th scope="col" colspan="1">Phone Number</th>
+          <th scope="col" colspan="1">isAdmin</th>
           <th scope="col" colspan="1">Options</th>
         </tr>
       </thead>
       <tbody id="users">
-        <tr id="row" class="user">
-          <th id="num" scope="row">1</th>
-          <td id="name" colspan="1">Mark Johnson</td>
-          <td id="email" colspan="1">Mark.Johnson@email.com</td>
-          <td id="address" colspan="2">Beirut</td>
-          <td id="phone" colspan="1">03456782</td>
-          <td id="options" colspan="1">
-            <button type="button" id="btnEdit" class="btn btn-success btn-sm">Edit</button>
-            <button type="button" id="btnDelete" class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
-        <!-- <tr id="row2" class="user">
-          <th id="num2" scope="row">2</th>
-          <td id="Fname2">Jacob</td>
-          <td id="Lname2">Thornton</td>
-          <td id="Address2">Ashrafieh</td>
-          <td id="Phone2">71 672 904</td>
-          <td id="btn2"><button type="button" id="EditUser2" onclick="EditUser(2)"
-              class="btn btn-success btn-sm">Edit</button>
-            <button type="button" id="DeleteUser2" onclick="DeleteUser(2)" class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
-        <tr id="row3" class="user">
-          <th id="num3" scope="row">3</th>
-          <td id="Fname3">Larry</td>
-          <td id="Lname3">the Bird</td>
-          <td id="Address3">Zalka</td>
-          <td id="Phone3">76 924 689</td>
-          <td id="btn3"><button type="button" id="EditUser3" onclick="EditUser(3)"
-              class="btn btn-success btn-sm">Edit</button>
-            <button type="button" id="DeleteUser3" onclick="DeleteUser(3)" class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
-        <tr id="row4">
-          <th id="num4" scope="row">4</th>
-          <td id="Fname4">John</td>
-          <td id="Lname4">Doe</td>
-          <td id="Address4">Beirut</td>
-          <td id="Phone4">76 424 699</td>
-          <td id="btn4"><button type="button" id="EditUser4" onclick="EditUser(4)"
-              class="btn btn-success btn-sm">Edit</button>
-            <button type="button" id="DeleteUser4" onclick="DeleteUser(4)" class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr> -->
       </tbody>
     </table>
 
@@ -223,6 +180,13 @@
               <label for="address">Address: </label>
               <textarea name="address" id="inpAddress" required></textarea>
             </p>
+            <p>
+              <label for="isAdmin">isAdmin</label>
+              <span>Yes</span>
+              <input type="radio" name="isAdmin" value="yes" id="inpAdminYes">
+              <span>No</span>
+              <input type="radio" name="isAdmin" value="no" id="inpAdminNo">
+            </p>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
               <button type="submit" class="btn btn-success" id="btn-save">Save changes</button>
@@ -266,6 +230,13 @@
             <p>
               <label for="address">Address: </label>
               <textarea name="address" id="inpAddress" required></textarea>
+            </p>
+            <p>
+              <label for="isAdmin">isAdmin</label>
+              <span>Yes</span>
+              <input type="radio" name="isAdmin" value="yes" id="inpAdminYes">
+              <span>No</span>
+              <input type="radio" name="isAdmin" value="no" id="inpAdminNo" checked>
             </p>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
@@ -316,7 +287,7 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
   <script src="https://kit.fontawesome.com/e6491a4ae6.js" crossorigin="anonymous"></script>
-  <script src="../js/adminDashboardUsers.js"></script>
+  <script src="../js/adminDashboardUsers.js" type="module"></script>
 </body>
 
 </html>

@@ -51,7 +51,7 @@ function setUpErrors() {
 
 
 				// TODO username and password is correct
-				if (false) {
+				if (true) {
 
 					startSignIn();
 					setTimeout(() => {

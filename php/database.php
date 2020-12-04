@@ -14,8 +14,7 @@ $db = new PDO(
     $db_password
 );
 
-// $rawQuery = $db->query("SELECT * FROM USERS");
-// $rows = $rawQuery->fetchAll(PDO::FETCH_ASSOC);
-// print_r($rows);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 ?>
 

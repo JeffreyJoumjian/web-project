@@ -1,4 +1,5 @@
 import * as orderFunctions from './orderFunctions.js';
+import * as server from './serverFunctions.js'
 
 const MED = 1.25;
 const LARGE = 1.5;
@@ -11,7 +12,7 @@ async function setUpPage() {
 
 	orderFunctions.loadItemsFromStorage();
 
-	const menuItems = await getItemsFromServer();
+	const menuItems = await server.getMenuItemsFromServer();
 	if (menuItems)
 		menuItems.forEach(item => createMenuItem(item));
 
@@ -113,8 +114,3 @@ function clearOrderItems() {
 
 }
 
-async function getItemsFromServer() {
-	const res = await fetch('../php/pizzas.php');
-	const data = await res.json();
-	return data;
-}

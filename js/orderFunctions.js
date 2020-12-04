@@ -162,5 +162,5 @@ export function loadItemsFromStorage() {
 export function updateCartNumber(items) {
 	const orderCount = document.querySelector('.order-count');
 	orderCount.innerText = items.length;
-
+	console.log(items.length);
 }

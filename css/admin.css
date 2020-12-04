@@ -192,6 +192,11 @@ select:focus {
   min-width: 250px !important;
 }
 
+.modal input[type="radio"] {
+  min-width: 20px !important;
+  width: 20px !important;
+}
+
 .card-body {
   min-height: 200px;
   max-height: 200px;

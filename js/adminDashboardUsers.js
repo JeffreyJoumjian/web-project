@@ -38,9 +38,9 @@ const addModalItems = {
 let selectedItem;
 const userItems = document.querySelector('tbody#users');
 
-setUpListeners();
+setUpPage();
 
-async function setUpListeners() {
+async function setUpPage() {
 
 	const users = await getUsersFromServer();
 
@@ -54,16 +54,7 @@ function setUpModalButtonListeners() {
 
 
 	const btnAdd = document.querySelector('#btnAdd');
-	btnAdd.addEventListener('click', () => {
-		// clear inputs
-		[
-			addModalItems.nameInput,
-			addModalItems.emailInput,
-			addModalItems.addressInput,
-			addModalItems.phoneInput
-		].forEach(inp => inp.value = "");
-		btnShowAddModal.click();
-	})
+	btnAdd.addEventListener('click', () => btnShowAddModal.click());
 
 
 	editModalItems.btnModalSave.addEventListener('click', (e) => {
@@ -78,15 +69,15 @@ function setUpModalButtonListeners() {
 
 		if (!isEmpty) {
 			e.preventDefault();
-			saveItem(selectedItem);
-			editModalItems.btnModalClose.click();
+			if (saveItem(selectedItem))
+				editModalItems.btnModalClose.click();
 		}
 	});
 
 	deleteModalItems.btnModalDelete.addEventListener('click', (e) => {
 		e.preventDefault();
-		deleteItem(selectedItem);
-		deleteModalItems.btnModalClose.click();
+		if (deleteItem(selectedItem))
+			deleteModalItems.btnModalClose.click();
 
 	});
 
@@ -101,8 +92,8 @@ function setUpModalButtonListeners() {
 
 		if (!isEmpty) {
 			e.preventDefault();
-			addItem();
-			addModalItems.btnModalClose.click();
+			if (addItem())
+				addModalItems.btnModalClose.click();
 		}
 	});
 }
@@ -148,24 +139,41 @@ async function deleteItem(selectedItem) {
 
 	userToBeDeleted = await sendUserToServer(userToBeDeleted, 'delete');
 
-	if (userToBeDeleted?.result)
+	if (userToBeDeleted?.result) {
 		selectedItem.remove();
+		return true;
+	}
 }
 
-// TODO update item in database
-function saveItem(selectedItem) {
+async function saveItem(selectedItem) {
+	const userId = selectedItem.querySelector('#_id');
 	const userName = selectedItem.querySelector('#name');
 	const userEmail = selectedItem.querySelector('#email');
 	const userAddress = selectedItem.querySelector('#address');
 	const userPhone = selectedItem.querySelector('#phone');
 	const userAdmin = selectedItem.querySelector('#admin');
 
-	userName.innerText = editModalItems.nameInput.value.trim();
-	userEmail.innerText = editModalItems.emailInput.value.trim();
-	userAddress.innerText = editModalItems.addressInput.value.trim();
-	userPhone.innerText = parseInt(editModalItems.phoneInput.value.trim()) > 0 ? editModalItems.phoneInput.value.trim() : 71000000;
-	userAdmin.innerText = editModalItems.adminInputYes.checked ? "Yes" : "No";
+	let updatedUser = {
+		_id: userId.innerText.trim(),
+		name: editModalItems.nameInput.value.trim(),
+		email: editModalItems.emailInput.value.trim(),
+		address: editModalItems.addressInput.value.trim(),
+		phone: parseInt(editModalItems.phoneInput.value.trim()) > 0 ? editModalItems.phoneInput.value.trim() : 71000000,
+		isAdmin: editModalItems.adminInputYes.checked ? "Yes" : "No"
+	}
 
+	updatedUser = await sendUserToServer(updatedUser, "update");
+
+	if (updatedUser?.result) {
+		const { name, email, address, phone, isAdmin } = updatedUser.result;
+		userName.innerText = name;
+		userEmail.innerText = email;
+		userAddress.innerText = address;
+		userPhone.innerText = phone;
+		userAdmin.innerText = isAdmin;
+
+		return true;
+	}
 }
 
 async function addItem() {
@@ -178,16 +186,18 @@ async function addItem() {
 		isAdmin: addModalItems.adminInputYes.checked ? 1 : 0
 	}
 
-
 	newUser = await sendUserToServer(newUser, 'add');
-	console.log(newUser);
-	if (newUser?.result)
+	if (newUser?.result) {
+		// clear inputs
+		[addModalItems.nameInput, addModalItems.emailInput, addModalItems.addressInput, addModalItems.phoneInput].forEach(inp => inp.value = "");
+
 		createUserItem(newUser.result);
+		return true;
+	}
 }
 
 function createUserItem(user) {
-	const { name, email, address, phone, isAdmin } = user;
-	const _id = user._id;
+	const { _id, name, email, address, phone, isAdmin } = user;
 
 	const newItemHTML = `
         <tr id="row" class="user">

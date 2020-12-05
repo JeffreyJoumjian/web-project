@@ -1,3 +1,5 @@
+import { getMenuItemsFromServer, sendMenuItemToServer } from "./serverFunctions.js";
+
 const editModal = document.querySelector('#editItemModal');
 const deleteModal = document.querySelector('#deleteItemModal');
 const addModal = document.querySelector('#addItemModal');
@@ -10,6 +12,7 @@ const editModalItems = {
 	nameInput: editModal.querySelector('#inpName'),
 	priceInput: editModal.querySelector('#inpPrice'),
 	ingredientsInput: editModal.querySelector('#inpIngredients'),
+	imgInput: editModal.querySelector('#inpImg'),
 	btnModalSave: editModal.querySelector('#btn-save'),
 	btnModalClose: editModal.querySelector('#btnClose')
 }
@@ -23,59 +26,61 @@ const addModalItems = {
 	nameInput: addModal.querySelector('#inpName'),
 	priceInput: addModal.querySelector('#inpPrice'),
 	ingredientsInput: addModal.querySelector('#inpIngredients'),
+	imgInput: addModal.querySelector('#inpImg'),
 	btnModalAdd: addModal.querySelector('#btn-add'),
 	btnModalClose: addModal.querySelector('#btnClose')
 }
 
 let selectedItem;
+const menuItems = document.querySelector('.menu-items');
 
-setUpListeners();
+setUpPage();
 
-function setUpListeners() {
-	const menuItems = [...document.querySelectorAll('.menu-item')];
-	menuItems.forEach(item => {
-		addItemEventListeners(item);
-	});
+async function setUpPage() {
+	const menuItems = await getMenuItemsFromServer();
 
-	setUpModalListeners();
+	if (menuItems)
+		menuItems.forEach(item => { createMenuItem(item); });
 
-	const btnAdd = document.querySelector('#btnAdd');
-	btnAdd.addEventListener('click', () => {
-		// clear inputs
-		[addModalItems.nameInput, addModalItems.priceInput, addModalItems.ingredientsInput].forEach(input => input.value = '');
-		btnShowAddModal.click();
-	})
-
+	setUpModalButtonListeners();
 }
 
-function setUpModalListeners() {
+function setUpModalButtonListeners() {
+
+	// for add item button
+	const btnAdd = document.querySelector('#btnAdd');
+	btnAdd.addEventListener('click', () => btnShowAddModal.click())
+
+	// for the save button in the edit modal
 	editModalItems.btnModalSave.addEventListener('click', (e) => {
 
-		let isEmpty = [editModalItems.nameInput, editModalItems.priceInput, editModalItems.ingredientsInput]
+		let isEmpty = [editModalItems.nameInput, editModalItems.priceInput, editModalItems.ingredientsInput, editModalItems.imgInput]
 			.some(inp => inp.value === '');
 
 		if (!isEmpty) {
 			e.preventDefault();
-			saveItem(selectedItem);
-			editModalItems.btnModalClose.click();
+			if (saveItem(selectedItem))
+				editModalItems.btnModalClose.click();
 		}
 	});
 
+	// for the delete button in the delete modal
 	deleteModalItems.btnModalDelete.addEventListener('click', (e) => {
 		e.preventDefault();
-		deleteItem(selectedItem);
-		deleteModalItems.btnModalClose.click();
+		if (deleteItem(selectedItem))
+			deleteModalItems.btnModalClose.click();
 
 	});
 
+	// for the add button in the add modal
 	addModalItems.btnModalAdd.addEventListener('click', (e) => {
-		let isEmpty = [addModalItems.nameInput, addModalItems.priceInput, addModalItems.ingredientsInput]
+		let isEmpty = [addModalItems.nameInput, addModalItems.priceInput, addModalItems.ingredientsInput, addModalItems.imgInput]
 			.some(inp => inp.value === '');
 
 		if (!isEmpty) {
 			e.preventDefault();
-			addItem();
-			addModalItems.btnModalClose.click();
+			if (addItem())
+				addModalItems.btnModalClose.click();
 		}
 	});
 }
@@ -98,7 +103,7 @@ function addItemEventListeners(item) {
 
 function updateModalFields(item) {
 
-
+	const itemImg = item.getAttribute('data-img');
 	const itemName = item.querySelector('#name').innerText;
 	const itemPrice = parseFloat(item.querySelector('#price').innerText.replace('$', ''));
 	const itemIngredients = item.querySelector('#ingredients').innerText.trim();
@@ -106,33 +111,77 @@ function updateModalFields(item) {
 	editModalItems.nameInput.value = itemName;
 	editModalItems.priceInput.value = itemPrice >= 0 ? itemPrice.toFixed(2) : 0;
 	editModalItems.ingredientsInput.value = itemIngredients;
+	editModalItems.imgInput.value = itemImg;
 }
 
-function deleteItem(selectedItem) {
-	// TODO remove from database as well
-	selectedItem.remove();
+async function deleteItem(selectedItem) {
+
+	let itemToBeDeleted = {
+		"_id": selectedItem.getAttribute('data-id')
+	}
+
+	itemToBeDeleted = await sendMenuItemToServer(itemToBeDeleted, 'delete');
+	if (itemToBeDeleted?.result) {
+		selectedItem.remove();
+		return true;
+	}
 }
 
-// TODO update item in database
-function saveItem(selectedItem) {
+async function saveItem(selectedItem) {
+
+	const itemId = selectedItem.getAttribute('data-id');
 	const itemName = selectedItem.querySelector('#name');
 	const itemPrice = selectedItem.querySelector('#price');
 	const itemIngredients = selectedItem.querySelector('#ingredients');
 
+	let updatedItem = {
+		_id: parseInt(itemId),
+		imgSrc: editModalItems.imgInput.value.trim(),
+		name: editModalItems.nameInput.value.trim(),
+		price: parseFloat(editModalItems.priceInput.value),
+		ingredients: editModalItems.ingredientsInput.value.trim()
+	}
 
-	itemName.innerText = editModalItems.nameInput.value.trim();
-	itemPrice.innerText = `$${parseFloat(editModalItems.priceInput.value).toFixed(2)}`;
-	itemIngredients.innerText = editModalItems.ingredientsInput.value;
+	updatedItem = await sendMenuItemToServer(updatedItem, 'update');
+	console.log(updatedItem);
+	if (updatedItem?.result) {
+
+		const { imgSrc, name, price, ingredients } = updatedItem.result;
+
+		selectedItem.setAttribute('data-img', imgSrc);
+		itemName.innerText = name;
+		itemPrice.innerText = `$${parseFloat(price).toFixed(2)}`;
+		itemIngredients.innerText = ingredients;
+
+		return true;
+	}
 }
 
-function addItem() {
-	const menuItems = document.querySelector('.menu-items');
+async function addItem() {
 
-	const name = addModalItems.nameInput.value.trim();
-	const price = parseFloat(addModalItems.priceInput.value).toFixed(2);
-	const ingredients = addModalItems.ingredientsInput.value.trim();
+	let newItem = {
+		name: addModalItems.nameInput.value.trim(),
+		price: parseFloat(addModalItems.priceInput.value).toFixed(2),
+		ingredients: addModalItems.ingredientsInput.value.trim(),
+		imgSrc: addModalItems.imgInput.value.trim()
+	}
+
+	newItem = await sendMenuItemToServer(newItem, 'add');
+
+	if (newItem?.result) {
+		// clear inputs
+		[addModalItems.nameInput, addModalItems.priceInput, addModalItems.ingredientsInput, addModalItems.imgInput].forEach(input => input.value = '');
+
+		createMenuItem(newItem.result);
+		return true;
+	}
+}
+
+function createMenuItem(item) {
+	const { _id, name, price, ingredients, imgSrc } = item;
 
 	const newItemHTML = `
+							<div class="col-xl-3 col-sm-6 p-2 menu-item" data-id=${_id} data-img=${imgSrc}>
 	              <div class="card card-common">
                 <div class="card-body">
                   <div class="d-flex justify-content-center">
@@ -149,12 +198,13 @@ function addItem() {
                     <button type="button" id="btnDelete" class="btn btn-danger">Delete</button>
                   </div>
                 </div>
-              </div>
-	`;
+							</div>
+							</div>
+	`.trim();
 
-	const newItemElement = document.createElement('div');
-	newItemElement.classList.add("col-xl-3", "col-sm-6", "p-2", "menu-item");
+	let newItemElement = document.createElement('template');
 	newItemElement.innerHTML = newItemHTML;
+	newItemElement = newItemElement.content.firstChild;
 	addItemEventListeners(newItemElement);
 	menuItems.appendChild(newItemElement);
 }

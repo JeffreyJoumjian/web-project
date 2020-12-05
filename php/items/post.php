@@ -8,36 +8,32 @@ if (isset($function)) {
 
     if ($function === "add") {
         $name = $_POST['name'];
-        $email = $_POST['email'];
-        $address = $_POST['address'];
-        $phone = $_POST['phone'];
-        $isAdmin = $_POST['isAdmin'];
+        $price = $_POST['price'];
+        $ingredients = $_POST['ingredients'];
+        $imgSrc = $_POST['imgSrc'];
 
-        if (isset($name) && isset($email) && isset($address) && isset($phone) && isset($isAdmin)) {
-            $sql = "INSERT INTO USERS (name, email, address, phone, isAdmin)
-					VALUES (:name, :email, :address, :phone, :isAdmin)";
+        if (isset($name) && isset($price) && isset($ingredients) && isset($imgSrc)) {
+            $sql = "INSERT INTO MENU_ITEMS (name, price, ingredients, imgSrc)
+					VALUES (:name, :price, :ingredients, :imgSrc)";
 
             $stmt = $db->prepare($sql);
             $result = $stmt->execute(array(
-                ':isAdmin' => ($isAdmin ? 1 : 0),
                 ':name' => $name,
-                ':email' => $email,
-                ':phone' => (int) $phone,
-                ':address' => $address,
+                ':price' => (float) $price,
+                ':ingredients' => $ingredients,
+                ':imgSrc' => $imgSrc,
             ));
 
             if ($result) {
                 $result = array(
                     "result" => array(
                         "_id" => $db->lastInsertId(),
-                        "name" => $name,
-                        "email" => $email,
-                        "address" => $address,
-                        "phone" => $phone,
-                        "isAdmin" => $isAdmin,
+                        'name' => $name,
+                        'price' => (float) $price,
+                        'ingredients' => $ingredients,
+                        'imgSrc' => $imgSrc,
                     ),
                 );
-
                 echo json_encode($result);
             }
 
@@ -45,34 +41,32 @@ if (isset($function)) {
     } else if ($function === "update") {
         $_id = $_POST["_id"];
         $name = $_POST['name'];
-        $email = $_POST['email'];
-        $address = $_POST['address'];
-        $phone = $_POST['phone'];
-        $isAdmin = $_POST['isAdmin'];
+        $price = $_POST['price'];
+        $ingredients = $_POST['ingredients'];
+        $imgSrc = $_POST['imgSrc'];
 
-        if (isset($_id) && isset($name) && isset($email) && isset($address) && isset($phone) && isset($isAdmin)) {
-            $sql = "UPDATE `USERS`
-										SET isAdmin=:isAdmin, name=:name, email=:email ,phone=:phone,address=:address WHERE _id=:_id";
+        if (isset($_id) && isset($name) && isset($price) && isset($ingredients) && isset($imgSrc)) {
+            $sql = "UPDATE `MENU_ITEMS`
+										SET name=:name, price=:price ,ingredients=:ingredients, imgSrc=:imgSrc
+										WHERE _id=:_id";
 
             $stmt = $db->prepare($sql);
             $result = $stmt->execute(array(
                 ':_id' => (int) $_id,
-                ':isAdmin' => ($isAdmin ? 1 : 0),
                 ':name' => $name,
-                ':email' => $email,
-                ':phone' => (int) $phone,
-                ':address' => $address,
+                ':price' => (float) $price,
+                ':ingredients' => $ingredients,
+                ':imgSrc' => $imgSrc,
             ));
 
             if ($result) {
                 $result = array(
                     "result" => array(
                         "_id" => $_id,
-                        "name" => $name,
-                        "email" => $email,
-                        "address" => $address,
-                        "phone" => $phone,
-                        "isAdmin" => $isAdmin,
+                        'name' => $name,
+                        'price' => (float) $price,
+                        'ingredients' => $ingredients,
+                        'imgSrc' => $imgSrc,
                     ),
                 );
                 echo json_encode($result);
@@ -83,7 +77,7 @@ if (isset($function)) {
         $_id = $_POST["_id"];
 
         if (isset($_id)) {
-            $sql = "DELETE FROM USERS WHERE _id = :_id";
+            $sql = "DELETE FROM MENU_ITEMS WHERE _id = :_id";
             $stmt = $db->prepare($sql);
             $result = $stmt->execute(
                 array(

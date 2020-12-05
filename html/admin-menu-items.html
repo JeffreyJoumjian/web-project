@@ -123,25 +123,6 @@
                 </div>
               </div>
             </div>
-            <div id="card1" class="col-xl-3 col-sm-6 p-2 menu-item">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-center">
-                    <div class="text-secondary text-center">
-                      <h5 id="name">Pepperoni Pizza</h5>
-                      <h4 id="price">$6.99</h4>
-                      <h6 id="ingredients">Mozarella Cheese, Pepperoni, Tomato Sauce</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div class="text-center">
-                    <button type="button" id="btnEdit" class="btn btn-success">Edit</button>
-                    <button type="button" id="btnDelete" class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
           </div>
         </div>
@@ -160,7 +141,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Edit Pizza</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit Item</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -172,13 +153,16 @@
               <input id="inpName" name="name" type="text" required>
             </p>
             <p>
-              <label for="name">Price: </label>
+              <label for="price">Price: </label>
               <input id="inpPrice" name="price" type="number" required>
             </p>
             <p>
-              <label for="name">Ingredients: </label>
+              <label for="ingredients">Ingredients: </label>
               <textarea name="ingredients" id="inpIngredients" cols="30" rows="4" required></textarea>
-
+            </p>
+            <p>
+              <label for="image">Image Link: </label>
+              <input id="inpImg" name="imgSrc" type="text" required>
             </p>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
@@ -199,7 +183,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Add Pizza</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Item</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -211,17 +195,20 @@
               <input id="inpName" name="name" type="text" required>
             </p>
             <p>
-              <label for="name">Price: </label>
+              <label for="price">Price: </label>
               <input id="inpPrice" name="price" type="number" required>
             </p>
             <p>
-              <label for="name">Ingredients: </label>
+              <label for="ingredients">Ingredients: </label>
               <textarea name="ingredients" id="inpIngredients" cols="30" rows="4" required></textarea>
-
+            </p>
+            <p>
+              <label for="image">Image Link: </label>
+              <input id="inpImg" name="imgSrc" type="text" required>
             </p>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-              <button type="submit" class="btn btn-success" id="btn-add">Add Pizza</button>
+              <button type="submit" class="btn btn-success" id="btn-add">Add Item</button>
             </div>
           </form>
         </div>
@@ -238,7 +225,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Delete Pizza?</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete Item?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -287,7 +274,7 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
   <script src="https://kit.fontawesome.com/e6491a4ae6.js" crossorigin="anonymous"></script>
-  <script src="../js/adminDashboardMenu.js"></script>
+  <script src="../js/adminDashboardMenu.js" type="module"></script>
 </body>
 
 </html>

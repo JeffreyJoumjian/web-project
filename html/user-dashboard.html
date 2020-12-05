@@ -33,7 +33,9 @@
           <div class="bottom-border pb-3">
             <img src="../img/dashboard/cust5.jpeg" width="50" height="50" class="rounded-circle mr-3"
               alt="user profile picture">
-            <a href="#" class="text-white">Mark Otto</a>
+            <a href="#" class="text-white">
+              <span class="profile-name"></span>
+            </a>
           </div>
           <ul class="navbar-nav flex-column mt-4">
             <li class="nav-item">
@@ -96,29 +98,30 @@
   <div class="d-flex align-items-start py-3 border-bottom">
     <img src="../img/dashboard/cust5.jpeg" class="img" alt="user profile picture">
     <div class="pl-sm-4 pl-2" id="img-section">
-      <b>Profile Photo</b>
-      <p>Accepted file types: .png, .jpg, .jpeg</p>
-      <button class="btn button border"><b>Upload</b></button>
+      <!-- <b>Profile Photo</b> -->
+      <!-- <p>Accepted file types: .png, .jpg, .jpeg</p>
+      <button class="btn button border"><b>Upload</b></button> -->
+      <h4 class="profile-name"></h4>
     </div>
   </div>
   <div class="py-2">
     <div class="row py-2">
       <div class="col-md-6">
-        <label for="firstname">First Name</label>
-        <input type="text" class="bg-light form-control" placeholder="Mark">
+        <label for="name">Name</label>
+        <input id="inpName" type="text" class="bg-light form-control" placeholder="Mark">
       </div>
-      <div class="col-md-6 pt-md-0 pt-3">
-        <label for="lastname">Last Name</label>
-        <input type="text" class="bg-light form-control" placeholder="Otto">
+      <div class="col-md-6">
+        <label for="email">Email</label>
+        <input id="inpEmail" type="text" class="bg-light form-control" placeholder="markotto@gmail.com">
       </div>
     </div>
     <div class="row py-2">
       <div class="col-md-6 pt-md-0 pt-3">
         <label for="phone">Phone Number</label>
-        <input type="tel" class="bg-light form-control" placeholder="03 456 782"> </div>
+        <input id="inpPhone" type="number" class="bg-light form-control" placeholder="03456782"> </div>
       <div class="col-md-6">
         <label for="address">Address</label>
-        <input type="text" class="bg-light form-control" placeholder="Beirut"> </div>
+        <input id="inpAddress" type="text" class="bg-light form-control" placeholder="Beirut"> </div>
     </div>
     <div class="py-3 pb-4 border-bottom">
       <button class="btn border button" id="btn-cancel">Cancel</button>
@@ -130,7 +133,7 @@
         <p>All your information will be deleted</p>
       </div>
       <div class="ml-auto">
-        <button class="btn danger">Deactivate</button> </div>
+        <button id="btn-deactivate" class="btn danger">Deactivate</button> </div>
     </div>
   </div>
 </div>
@@ -144,6 +147,8 @@
   integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
 <script src="https://kit.fontawesome.com/e6491a4ae6.js" crossorigin="anonymous"></script>
+
+<script src="../js/userDashboardProfile.js" type="module"></script>
 </body>
 
 </html>

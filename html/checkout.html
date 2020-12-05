@@ -52,16 +52,10 @@
 		</div>
 	</nav>
 
-	<!-- <nav>
-		<div class="order">
-			<i class="fas fa-store"></i>
-			<p class="order-count">4</p>
-		</div>
-	</nav> -->
 
 	<div class="container-fluid order-container">
-		<div class="row mx-auto">
 
+		<div class="row mx-auto">
 			<!-- details col -->
 			<div class="col-12 col-md-6 details-col mx-auto">
 				<div class="details-wrapper">
@@ -78,12 +72,12 @@
 						</div>
 
 						<div class="label-group">
-							<input class="inpPhone" type="text" name="phone" required>
+							<input id="inpPhone" type="number" name="phone" required>
 							<label for="phone">Phone</label>
 						</div>
 
 						<div class="label-group">
-							<input class="inpAddress" type="text" name="address" required>
+							<input id="inpAddress" type="text" name="address" required>
 							<label for="address">Address</label>
 
 						</div>
@@ -91,6 +85,10 @@
 						<div class="order-btns text-center">
 							<button class="btn-cancel">cancel</button>
 							<button class="btn-order">Order Now</button>
+						</div>
+
+						<div class="alert alert-success alert-dismissible fade show px-5 py-1" role="alert">
+							Your order has been placed successfully!
 						</div>
 					</form>
 				</div>
@@ -110,6 +108,7 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

@@ -159,7 +159,7 @@ async function saveItem(selectedItem) {
 		email: editModalItems.emailInput.value.trim(),
 		address: editModalItems.addressInput.value.trim(),
 		phone: parseInt(editModalItems.phoneInput.value.trim()) > 0 ? editModalItems.phoneInput.value.trim() : 71000000,
-		isAdmin: editModalItems.adminInputYes.checked ? "Yes" : "No"
+		isAdmin: editModalItems.adminInputYes.checked ? 1 : 0
 	}
 
 	updatedUser = await sendUserToServer(updatedUser, "update");
@@ -170,7 +170,7 @@ async function saveItem(selectedItem) {
 		userEmail.innerText = email;
 		userAddress.innerText = address;
 		userPhone.innerText = phone;
-		userAdmin.innerText = isAdmin;
+		userAdmin.innerText = isAdmin ? "Yes" : "No";
 
 		return true;
 	}

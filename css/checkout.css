@@ -122,12 +122,13 @@ nav {
 }
 
 .order-container {
-  margin-top: 150px;
+  margin-top: 150px !important;
   padding: 0 50px;
 }
 
 .details-col,
 .order-col {
+  /* margin-top: 100px; */
   margin-bottom: 50px;
 }
 
@@ -461,4 +462,8 @@ input:valid + label {
   .order-total-price {
     margin-left: 120px !important;
   }
+}
+
+.alert {
+  opacity: 0;
 }

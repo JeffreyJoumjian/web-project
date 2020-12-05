@@ -156,11 +156,12 @@ export function loadItemsFromStorage() {
 		savedItems.forEach(item => {
 			addToOrder(item, true);
 		});
+
+		return savedItems;
 	}
 }
 
 export function updateCartNumber(items) {
 	const orderCount = document.querySelector('.order-count');
 	orderCount.innerText = items.length;
-	console.log(items.length);
 }

@@ -34,7 +34,7 @@ if (!isset($_SESSION["user"]) || $_SESSION["user"]["isAdmin"] == 1) {
       <div class="row">
         <!-- Sidebar -->
         <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
-          <a href="./home.html"
+          <a href="./home.php"
             class="navbar-brand text-white display-block mx-auto text-center py-3 mb-4 bottom-border">Our
             Pizzeria </a>
           <div class="bottom-border pb-3">

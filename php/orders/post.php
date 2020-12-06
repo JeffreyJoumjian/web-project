@@ -53,8 +53,8 @@ if (isset($_GET["f"])) {
                 ":phone" => (int) $phone,
             );
 
-            if (isset($_POST["user_id"])) {
-                $user_id = $_POST["user_id"];
+            if (isset($_SESSION["user"]["_id"])) {
+                $user_id = $_SESSION["user"]["_id"];
                 $hasUserId = ":user_id,";
                 $hasUserIdCol = "`user_id`,";
                 $queryArray[":user_id"] = (int) $user_id;
@@ -84,6 +84,5 @@ if (isset($_GET["f"])) {
                 echo json_encode($result);
             }
         }
-        // ADD update and delete functions
     }
 }

@@ -13,27 +13,7 @@ function isValidEmail($email)
 }
 
 if (isset($function)) {
-
-    if ($function === "user") {
-        if (isset($_POST["_id"])) {
-            $_id = $_POST["_id"];
-
-            $sql = "SELECT _id, name,email,phone,address FROM USERS WHERE _id=:_id";
-
-            $stmt = $db->prepare($sql);
-            $stmt->execute(array(
-                ':_id' => (int) $_id,
-            ));
-
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($result) {
-                echo json_encode($result);
-            }
-
-        }
-
-    } else if ($function === "add") {
+    if ($function === "add") {
         if (isset($_POST['name']) &&
             isset($_POST['email']) && isValidEmail($_POST['email']) &&
             isset($_POST['address']) && isset($_POST['phone'])) {

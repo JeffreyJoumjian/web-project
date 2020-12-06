@@ -82,7 +82,7 @@ function setUpOrderButtonListeners() {
 
 	btnOrder.addEventListener('click', () => {
 		orderFunctions.saveItemsInStorage();
-		location.assign('../html/checkout.html');
+		location.assign('../html/checkout.php');
 	});
 }
 

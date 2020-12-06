@@ -35,20 +35,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="./home.html">Home</a>
+              <a class="nav-link" href="./home.php">Home</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="./our-story.html">Our Story</a>
+              <a class="nav-link" href="./our-story.php">Our Story</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./menu.html">Menu</a>
+              <a class="nav-link" href="./menu.php">Menu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./contact-us.html">Contact</a>
+              <a class="nav-link" href="./contact-us.php">Contact</a>
             </li>
             <li class="nav-item">
-              <a href="./sign-in.html">
+              <a href="./sign-in.php">
                 <button type="button" class="btn btn-light btn-lg" id="btn-sign-in">Sign in</button>
               </a>
             </li>
@@ -106,7 +106,7 @@
 
     <div class="row offers">
 
-      <a id="order" href="./menu.html"><button type="button" class="order btn btn-dark btn-lg mt-3">Order
+      <a id="order" href="./menu.php"><button type="button" class="order btn btn-dark btn-lg mt-3">Order
           now</button></a>
     </div>
   </section>

@@ -36,7 +36,7 @@ if (isset($_SESSION["user"])) {
 <body>
 	<div class="page-container"></div>
 	<div class="arrow-back">
-		<a href="./home.html">
+		<a href="./home.php">
 			<i class="fas fa-arrow-left fa-2x text-white"></i>
 		</a>
 	</div>

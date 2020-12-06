@@ -1,5 +1,5 @@
 import * as orderFunctions from './orderFunctions.js';
-import { sendOrderToServer } from './serverFunctions.js';
+import { getUserFromCookie, sendOrderToServer } from './serverFunctions.js';
 
 const form = {
 	nameInput: document.querySelector('#inpName'),
@@ -9,14 +9,24 @@ const form = {
 
 const alert = document.querySelector('.alert');
 
+let USER = getUserFromCookie();
+
 setUpPage();
 
 async function setUpPage() {
 	// loads items in cart and adds it to the order
 	orderFunctions.loadItemsFromStorage();
-
 	setUpButtonListeners();
 
+	if (USER)
+		setUpFormFields();
+
+}
+
+function setUpFormFields() {
+	form.nameInput.value = USER.name;
+	form.addressInput.value = USER.address;
+	form.phoneInput.value = parseInt(USER.phone);
 }
 
 function setUpButtonListeners() {
@@ -31,7 +41,7 @@ function setUpButtonListeners() {
 			.some(inp => inp.value === '');
 
 		if (!localStorage.getItem('orderItems'))
-			window.location.assign('../html/menu.html');
+			window.location.assign('../html/menu.php');
 
 		else if (!isEmpty) {
 			e.preventDefault();
@@ -47,7 +57,7 @@ function setUpButtonListeners() {
 		}
 	});
 
-	btnCancel.addEventListener('click', () => window.location.assign('../html/menu.html'));
+	btnCancel.addEventListener('click', () => window.location.assign('../html/menu.php'));
 }
 
 async function submitOrder() {
@@ -55,7 +65,7 @@ async function submitOrder() {
 	let savedItems = localStorage.getItem('orderItems');
 
 	if (!savedItems)
-		window.location.assign('../html/menu.html');
+		window.location.assign('../html/menu.php');
 
 	if (savedItems) {
 		savedItems = JSON.parse(savedItems);
@@ -73,9 +83,7 @@ async function submitOrder() {
 			totalPrice += parseFloat(newItem.price);
 		});
 
-		// ADD ID if user is signed in
 		let newOrder = {
-			user_id: 2,
 			items: JSON.stringify(items),
 			totalPrice,
 			name: form.nameInput.value,

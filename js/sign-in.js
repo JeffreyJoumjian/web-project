@@ -38,10 +38,10 @@ function setUpErrors() {
 
 		// check if user has already logged in before because the server sets a cookie
 		if (userCookie.includes('webprojectcookie_id')) {
-			return location.assign('../html/user-dashboard.html');
+			return location.assign('../html/user-dashboard.php');
 		}
 		if (userCookie.includes('webprojectcookie2_id')) {
-			return location.assign('../html/admin-dashboard.html');
+			return location.assign('../html/admin-dashboard.php');
 		}
 
 		signIn.addEventListener('click', async (e) => {

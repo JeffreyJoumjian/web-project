@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (isset($_SESSION["user"])) {
+
+    if ($_SESSION["user"]["isAdmin"] == 1) {
+        header('Location: admin-dashboard.php');
+    } else {
+        header('Location: user-dashboard.php');
+    }
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -56,8 +70,8 @@
 				</div>
 
 				<div class="label-group" id="phone-input-up">
-					<input type="number" placeholder="" required onkeydown="javascript: 
-						return event.keyCode === 8 || event.keyCode === 46 ? true : 
+					<input type="number" placeholder="" required onkeydown="javascript:
+						return event.keyCode === 8 || event.keyCode === 46 ? true :
 						!isNaN(Number(event.key))" />
 					<label for="phone">Phone</label>
 					<i class="fas fa-exclamation-circle text-danger"></i>

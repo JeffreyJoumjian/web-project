@@ -1,6 +1,7 @@
 <?php
-
-require "../database.php";
+session_start();
+// require "../database.php";
+require $_SERVER['DOCUMENT_ROOT'] . '/web-project/php/database.php';
 
 if (isset($_GET["f"])) {
     $function = $_GET["f"];
@@ -13,7 +14,7 @@ if (isset($_GET["f"])) {
             $email = $_POST["email"];
             $password = $_POST["password"];
 
-            $sql = "SELECT _id, isAdmin from USERS WHERE email=:email AND password=:password";
+            $sql = "SELECT _id, isAdmin, `name`, email, `address` from USERS WHERE email=:email AND password=:password";
 
             $stmt = $db->prepare($sql);
             $stmt->execute(array(
@@ -24,32 +25,28 @@ if (isset($_GET["f"])) {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($result) {
-                // $result = array(
-                //     "result" => $result,
-                // );
-                // echo json_encode($result);
-
                 // set session after authenticating user;
                 // session basically contains the user's id which is used on other parts of the app
-                session_start();
 
                 // delete old session and cookies
-                unset($_SESSION["user"]);
-                setcookie('webprojectcookie_id', '', time() - 3600, '/'); // user cookie
-                setcookie('webprojectcookie2_id', '', time() - 3600, '/'); // admin cookie
+                if (isset($_SESSION["user"])) {
+                    unset($_SESSION["user"]);
+                }
+
+                setcookie('webprojectcookie', '', time() - 3600, '/'); // user cookie
 
                 $_id = $result["_id"];
                 $isAdmin = (boolean) $result["isAdmin"];
-                $_SESSION["user"] = array("_id" => $_id);
 
-                if ($isAdmin) {
-                    setcookie('webprojectcookie2_id', $_id, time() + 3600, '/');
-                } else {
-                    setcookie('webprojectcookie_id', $_id, time() + 3600, '/');
-                }
+                $result = array(
+                    "result" => $result,
+                );
+                $result = json_encode($result);
 
-                $result = array("result" => $result);
-                echo json_encode($result);
+                $_SESSION["user"] = $result;
+
+                setcookie('webprojectcookie', $result, time() + 3600, '/');
+                echo $result;
 
                 return;
             }

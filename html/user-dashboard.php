@@ -1,6 +1,10 @@
 <?php
 session_start();
-$_SESSION["_id"] = "2";
+
+if (!isset($_SESSION["user"]) || $_SESSION["user"]["isAdmin"] == 1) {
+    header('Location: sign-in.php');
+}
+
 ?>
 
 <!doctype html>

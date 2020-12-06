@@ -1,4 +1,4 @@
-import { sendUserToServer } from "./serverFunctions.js";
+import { sendUserToServer, getCookie } from "./serverFunctions.js";
 
 const profileName = [...document.querySelectorAll('.profile-name')];
 const nameInput = document.querySelector('#inpName');
@@ -12,6 +12,9 @@ const btnSave = document.querySelector('#btn-save');
 let USER = {
 	_id: 2
 }
+
+console.log(getCookie("webprojectcookie"));
+
 
 setUpPage();
 

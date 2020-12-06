@@ -1,3 +1,12 @@
+
+<?php
+session_start();
+
+if (!isset($_SESSION["user"]) || !($_SESSION["user"]["isAdmin"] == 1)) {
+    header('Location: sign-in.php');
+}
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -39,12 +48,14 @@
               <a href="#" class="text-white">Admin</a>
             </div>
             <ul class="navbar-nav flex-column mt-4">
-              <li class="nav-item">
-                <a href="./admin-dashboard.html" class="nav-link text-white p-3 mb-2 sidebar-link"><i
-                    class="fas fa-users text-light fa-lg mr-3"></i>Users</a>
-              </li>
+
               <li class="nav-item">
                 <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link current"><i
+                    class="fas fa-users text-light fa-lg mr-3"></i>Users</a>
+              </li>
+
+              <li class="nav-item">
+                <a href="./admin-menu-items.html" class="nav-link text-white p-3 mb-2 sidebar-link"><i
                     class="fas fa-table text-light fa-lg mr-3"></i>Menu Items</a>
               </li>
 
@@ -78,7 +89,7 @@
   <!-- End of Navbar -->
 
 
-  <!-- Sign Out Modal -->
+  <!-- Modal -->
   <div class="modal fade" id="sign-out">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -99,37 +110,51 @@
   <!-- End of Modal -->
 
 
+  <!--Beginning of Users Table-->
+  <div class="col-xl-10 col-lg-9 col-md-8 ml-auto  mt-5" id="users">
+    <div class="text-left mr-40">
+      <!-- Button trigger add modal -->
+      <button type="button" class="btn btn-success auto-mx" id="btnAdd">
+        Add User
+      </button>
+
+    </div>
+    <h3 class="text-muted text-center mb-3">Users</h3>
+    <table class="table table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" colspan="1">Name</th>
+          <th scope="col" colspan="1">Email</th>
+          <th scope="col" colspan="2">Address</th>
+          <th scope="col" colspan="1">Phone Number</th>
+          <th scope="col" colspan="1">isAdmin</th>
+          <th scope="col" colspan="1">Options</th>
+        </tr>
+      </thead>
+      <tbody id="users">
+      </tbody>
+    </table>
+
+  </div>
+  <!--End of User Table-->
 
 
-  <!-- Cards -->
-  <section>
-    <div class="container-fluid" id="menu-items">
+  <!-- Footer -->
+  <!-- <footer>
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-xl-10 col-md-8 col-lg-9 ml-auto">
-          <div class="row pt-md-5 mt-md-3 mb-5 menu-items">
-            <div id="addItem" class="col-xl-3 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body d-flex justify-content-center align-items-center">
-                  <div class="">
-                    <div id="addParent" class=" text-secondary text-center">
-                      <i id="plus" class="fas fa-plus fa-3x text-warning mx-auto my-auto"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-secondary">
-                  <div id="parentbtn" class="text-center AddDiv">
-                    <button type="button" id="btnAdd" class="btn btn-success">Add Item</button>
-                  </div>
-                </div>
-              </div>
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row border-top pt-3">
+            <div class="col-lg-6 text-center">
+              <p>&copy; 2020 Copyright. Pizzeria</p>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <!-- End of Cards -->
+  </footer> -->
+  <!-- End of Footer -->
 
   <!-- Button trigger edit modal -->
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editItemModal" id="btnEditModal">
@@ -141,7 +166,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Edit Item</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit User</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -153,16 +178,23 @@
               <input id="inpName" name="name" type="text" required>
             </p>
             <p>
-              <label for="price">Price: </label>
-              <input id="inpPrice" name="price" type="number" required>
+              <label for="email">Email: </label>
+              <input id="inpEmail" name="email" type="text" required>
             </p>
             <p>
-              <label for="ingredients">Ingredients: </label>
-              <textarea name="ingredients" id="inpIngredients" cols="30" rows="4" required></textarea>
+              <label for="phone">Phone Number: </label>
+              <input id="inpPhone" name="phone" type="number" required>
             </p>
             <p>
-              <label for="image">Image Link: </label>
-              <input id="inpImg" name="imgSrc" type="text" required>
+              <label for="address">Address: </label>
+              <textarea name="address" id="inpAddress" required></textarea>
+            </p>
+            <p>
+              <label for="isAdmin">isAdmin</label>
+              <span>Yes</span>
+              <input type="radio" name="isAdmin" value="yes" id="inpAdminYes">
+              <span>No</span>
+              <input type="radio" name="isAdmin" value="no" id="inpAdminNo">
             </p>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
@@ -173,8 +205,10 @@
       </div>
     </div>
   </div>
-  <!-- Button trigger add modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addItemModal" id="btnAddModal">
+
+  <button type="button" class="btn btn-success auto-mx" data-toggle="modal" data-target="#addItemModal"
+    id="btnAddModal">
+    Add User
   </button>
 
   <!-- add Modal -->
@@ -183,7 +217,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Add Item</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Add User</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -195,20 +229,27 @@
               <input id="inpName" name="name" type="text" required>
             </p>
             <p>
-              <label for="price">Price: </label>
-              <input id="inpPrice" name="price" type="number" required>
+              <label for="email">Email: </label>
+              <input id="inpEmail" name="email" type="text" required>
             </p>
             <p>
-              <label for="ingredients">Ingredients: </label>
-              <textarea name="ingredients" id="inpIngredients" cols="30" rows="4" required></textarea>
+              <label for="phone">Phone Number: </label>
+              <input id="inpPhone" name="phone" type="number" required>
             </p>
             <p>
-              <label for="image">Image Link: </label>
-              <input id="inpImg" name="imgSrc" type="text" required>
+              <label for="address">Address: </label>
+              <textarea name="address" id="inpAddress" required></textarea>
+            </p>
+            <p>
+              <label for="isAdmin">isAdmin</label>
+              <span>Yes</span>
+              <input type="radio" name="isAdmin" value="yes" id="inpAdminYes">
+              <span>No</span>
+              <input type="radio" name="isAdmin" value="no" id="inpAdminNo" checked>
             </p>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-              <button type="submit" class="btn btn-success" id="btn-add">Add Item</button>
+              <button type="submit" class="btn btn-success" id="btn-add">Add User</button>
             </div>
           </form>
         </div>
@@ -225,7 +266,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Delete Item?</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete User?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -245,25 +286,6 @@
   </div>
 
 
-
-
-  <!-- Footer -->
-  <!-- <footer>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-          <div class="row border-top pt-3">
-            <div class="col-lg-6 text-center">
-              <p>&copy; 2020 Copyright. Pizzeria</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer> -->
-  <!-- End of Footer -->
-
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
   </script>
@@ -274,7 +296,7 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
   <script src="https://kit.fontawesome.com/e6491a4ae6.js" crossorigin="anonymous"></script>
-  <script src="../js/adminDashboardMenu.js" type="module"></script>
+  <script src="../js/adminDashboardUsers.js" type="module"></script>
 </body>
 
 </html>

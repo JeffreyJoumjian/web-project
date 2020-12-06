@@ -57,12 +57,12 @@ function setUpErrors() {
 				// TODO username and password is correct
 				if (user?.result) {
 
-					let redirect = user.result.isAdmin == 1 ? "admin" : "user";
-					console.log(user.result.isAdmin, user.result.isAdmin == 1, redirect);
+					// let redirect = user.result.isAdmin == 1 ? "admin" : "user";
 
 					startSignIn();
 					setTimeout(() => {
-						window.location.assign(`${site}/${redirect}-dashboard.html`);
+						window.location.reload();
+						// window.location.assign(`${site}/${redirect}-dashboard.html`);
 					}, 3500);
 				} else {
 					showErrors('in', false);
@@ -103,7 +103,7 @@ function setUpErrors() {
 					if (user?.result) {
 						startSignIn();
 						setTimeout(() => {
-							window.location.assign(`${site}/user-dashboard.html`);
+							// window.location.assign(`${site}/user-dashboard.html`);
 						}, 3500);
 
 					} else

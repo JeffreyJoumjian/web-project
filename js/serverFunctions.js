@@ -95,3 +95,16 @@ export async function sendOrderToServer(inputs, func) {
 	const data = await res.json();
 	return data;
 }
+
+export function getCookie(cookieName) {
+	const cookies = document.cookie.split(';');
+
+	for (let i = 0; i < cookies.length; i++) {
+		const cookie = unescape(cookies[i].trim());
+		const name = cookie.split("=")[0];
+		const value = cookie.split("=")[1];
+
+		if (name === cookieName)
+			return { name, value };
+	}
+}

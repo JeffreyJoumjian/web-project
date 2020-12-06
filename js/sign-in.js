@@ -1,3 +1,5 @@
+import { sendUserToServer, signInUser } from "../js/serverFunctions.js";
+
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
@@ -5,12 +7,10 @@ const container = document.getElementById('container');
 const signIn = document.getElementById('sign-in');
 const joinUs = document.getElementById('join-us');
 
-const signInForm = document.querySelector('.sign-in-container');
 const emailIn = document.getElementById('email-input-in');
 const passwordIn = document.getElementById('password-input-in');
 const fieldsIn = [emailIn, passwordIn];
 
-const signUpForm = document.querySelector('.sign-up-container');
 const phoneUp = document.getElementById('phone-input-up');
 const addressUp = document.getElementById('address-input-up');
 const emailUp = document.getElementById('email-input-up');
@@ -18,8 +18,6 @@ const passwordUp = document.getElementById('password-input-up');
 const nameUp = document.getElementById('name-input-up');
 const fieldsUp = [phoneUp, addressUp, emailUp, passwordUp, nameUp];
 
-let inSuccess = true;
-let upSuccess = true;
 const inErrors = ['error-email-in', 'error-password-in', 'empty', 'exists'];
 const upErrors = ['error-phone-up', 'error-address-up', 'error-email-up', 'error-name-up', 'error-password-up',
 	'notFull', 'lt5', 'invalid', 'empty', 'lt8'
@@ -30,33 +28,40 @@ const signPopup = document.getElementById('sign-modal');
 const loadingLine = document.getElementById('loading-in');
 const loadingText = document.getElementById('loading-text-in');
 
-const site = window.location.origin;
-const headers = {
-	'Content-Type': 'application/json',
-	'xLT': document.cookie.split('=')[1]
-}
+const site = `${window.location.origin}/web-project/html`;
+const userCookie = document.cookie;
 
 // logging in is here
 function setUpErrors() {
 
 	function setUpErrorListeners() {
 
-		signIn.addEventListener('click', async () => {
+		// check if user has already logged in before because the server sets a cookie
+		if (userCookie.includes('webprojectcookie_id')) {
+			return location.assign('../html/user-dashboard.html');
+		}
+		if (userCookie.includes('webprojectcookie2_id')) {
+			return location.assign('../html/admin-dashboard.html');
+		}
+
+		signIn.addEventListener('click', async (e) => {
 			showErrors(true);
 			if (isSuccessful('in')) {
 				let formData = {
-					username: emailIn.querySelector('input').value,
+					email: emailIn.querySelector('input').value.trim(),
 					password: passwordIn.querySelector('input').value
 				}
 
+				let user = await signInUser(formData, "auth");
 
 				// TODO username and password is correct
-				if (true) {
+				if (user?.result) {
+
+					let redirect = user.result.isAdmin ? "admin" : "user"
 
 					startSignIn();
 					setTimeout(() => {
-						// window.location.assign(`${site}/${user.userType}`);
-						window.location.reload();
+						window.location.assign(`${site}/${redirect}-dashboard.html`);
 					}, 3500);
 				} else {
 					showErrors('in', false);
@@ -66,6 +71,7 @@ function setUpErrors() {
 			// error logging in 
 			else {
 				showErrors(false);
+				addressErrors(true);
 				emailErrors('invalid', true);
 			}
 
@@ -76,35 +82,40 @@ function setUpErrors() {
 			showErrors(false);
 			if (isSuccessful('up')) {
 				// get data from form
-				let user = {
-					fullName: nameUp.querySelector('input').value,
-					email: emailUp.querySelector('input').value,
+				let formData = {
+					name: nameUp.querySelector('input').value.trim(),
+					email: emailUp.querySelector('input').value.trim(),
 					password: passwordUp.querySelector('input').value,
 					phone: phoneUp.querySelector('input').value,
 					address: addressUp.querySelector('input').value,
 				}
 
-				// TODO create user
+				// create user
+				let user = await sendUserToServer(formData, "add");
 
-				// TODO Check if user exists <=> has been created
-				if (true) {
-					// TODO check if user is authenticated
+				// if created successfully try to auth user
+				if (user?.result) {
+					let user = { email: formData.email, password: formData.password };
+					user = await signInUser(user, "auth");
 
 					// TODO if user is authenticated
-					if (true) {
-
+					if (user?.result) {
 						startSignIn();
 						setTimeout(() => {
-							// window.location.assign(`${site}/${user.userType}`);
+							window.location.assign(`${site}/user-dashboard.html`);
 						}, 3500);
 
 					} else
-						alert('An error has occured on our side, please try again');
+						alert('an error has occured on our side');
+				}
+				else {
+					showErrors('up', false);
+					emailErrors('exists', false)
 				}
 			}
 			// error logging in 
 			else
-				showErrors(true);
+				showErrors(false);
 
 		});
 
@@ -161,29 +172,28 @@ function setUpErrors() {
 	function addressErrors(noSubmit) {
 		const addressUpValue = addressUp.querySelector('input').value.trim();
 
-		if (!noSubmit) {
-			if (addressUpValue === '')
-				return addressUp.classList.add('error-address-up', 'empty');
-			addressUp.classList.remove('error-address-up', 'empty');
-		} else
+		if (addressUpValue === '')
 			addressUp.classList.add('error-address-up', 'empty');
+		else
+			addressUp.classList.remove('error-address-up', 'empty')
 	}
 
 	function emailErrors(select, noSubmit) {
-		if (select === 'up') {
+		if (select === 'up' || select === 'exists') {
 			//empty email
 			if (noSubmit) {
 				if (emailUp.querySelector('input').value.trim() === '')
 					emailUp.classList.add('error-email-up', 'empty');
 			}
-			//invalid email
 			else if (!validate(emailUp.querySelector('input').value.trim()))
-				emailUp.classList.add('error-email-up', 'invalid')
+				emailUp.classList.add('error-email-up', 'invalid');
+			//invalid email
 			else if (select === 'exists')
 				emailUp.classList.add('error-email-up', 'exists')
 			else
 				emailUp.classList.remove('error-email-up', 'invalid', 'empty', 'exists')
-		} else {
+		}
+		else {
 			//empty email field
 			if (noSubmit) {
 				if (emailIn.querySelector('input').value.trim() === '' || !validate(emailIn.querySelector('input').value.trim()))

@@ -1,10 +1,9 @@
 <?php
 require_once "../database.php";
 
-$function = $_GET["f"];
-
 // TODO CHECK IF USER IS ADMIN
-if (isset($function)) {
+if (isset($_GET["f"])) {
+    $function = $_GET["f"];
 
     if ($function === "userOrders") {
         if (isset($_POST["user_id"])) {

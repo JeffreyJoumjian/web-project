@@ -27,6 +27,23 @@ export async function sendUserToServer(inputs, func) {
 	return data;
 }
 
+export async function signInUser(inputs, func) {
+
+	const formData = new FormData();
+	for (let key in inputs)
+		formData.append(key, inputs[key]);
+
+	const res = await fetch(`../php/auth/post.php?f=${func}`, {
+		method: 'POST',
+		body: formData
+	});
+
+	const data = await res.json();
+	console.log(data);
+	return data;
+
+}
+
 export async function getMenuItemsFromServer() {
 	const res = await fetch('../php/items/get.php?f=all');
 	const data = await res.json();

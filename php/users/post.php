@@ -34,39 +34,59 @@ if (isset($function)) {
         }
 
     } else if ($function === "add") {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $address = $_POST['address'];
-        $phone = $_POST['phone'];
-        $isAdmin = $_POST['isAdmin'];
+        if (isset($_POST['name']) &&
+            isset($_POST['email']) && isValidEmail($_POST['email']) &&
+            isset($_POST['address']) && isset($_POST['phone'])) {
 
-        if (isset($name) && isset($email) && isValidEmail($email) && isset($address) && isset($phone) && isset($isAdmin)) {
+            try {
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $address = $_POST['address'];
+                $phone = $_POST['phone'];
 
-            $sql = "INSERT INTO USERS (name, email, address, phone, isAdmin)
-					VALUES (:name, :email, :address, :phone, :isAdmin)";
+                $isAdmin = isset($_POST["isAdmin"]) ? (int) $_POST["isAdmin"] : 0;
 
-            $stmt = $db->prepare($sql);
-            $result = $stmt->execute(array(
-                ':isAdmin' => ($isAdmin ? 1 : 0),
-                ':name' => $name,
-                ':email' => $email,
-                ':phone' => (int) $phone,
-                ':address' => $address,
-            ));
+                $password = "";
+                $hasPasswordCol = "";
+                $hasPasswordField = "";
 
-            if ($result) {
-                $result = array(
-                    "result" => array(
-                        "_id" => $db->lastInsertId(),
-                        "name" => $name,
-                        "email" => $email,
-                        "address" => $address,
-                        "phone" => $phone,
-                        "isAdmin" => $isAdmin,
-                    ),
+                $queryArray = array(
+                    ':isAdmin' => $isAdmin,
+                    ':name' => $name,
+                    ':email' => $email,
+                    ':phone' => (int) $phone,
+                    ':address' => $address,
                 );
 
-                echo json_encode($result);
+                if (isset($_POST["password"])) {
+                    $password = $_POST["password"];
+                    $hasPasswordCol = ",password";
+                    $hasPasswordField = ",:password";
+                    $queryArray[":password"] = $password;
+                }
+
+                $sql = "INSERT INTO USERS (name, email, address, phone, isAdmin" . $hasPasswordCol . ")
+					VALUES (:name, :email, :address, :phone, :isAdmin" . $hasPasswordField . ")";
+
+                $stmt = $db->prepare($sql);
+                $result = $stmt->execute($queryArray);
+
+                if ($result) {
+                    $result = array(
+                        "result" => array(
+                            "_id" => $db->lastInsertId(),
+                            "name" => $name,
+                            "email" => $email,
+                            "address" => $address,
+                            "phone" => $phone,
+                            "isAdmin" => $isAdmin,
+                        ),
+                    );
+
+                    echo json_encode($result);
+                }
+            } catch (Throwable $e) {
+                echo json_encode(array("error" => $e));
             }
 
         }

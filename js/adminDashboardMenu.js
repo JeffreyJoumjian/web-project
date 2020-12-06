@@ -49,10 +49,15 @@ async function setUpPage() {
 }
 
 function setUpModalButtonListeners() {
+	// log out button
+	const btnModalLogOut = document.querySelector('#btn-logout');
+	btnModalLogOut.addEventListener('click', () => window.location.assign('../html/sign-out.php'));
 
 	// for add item button
 	const btnAdd = document.querySelector('#btnAdd');
 	btnAdd.addEventListener('click', () => btnShowAddModal.click())
+
+
 
 	// for the save button in the edit modal
 	editModalItems.btnModalSave.addEventListener('click', (e) => {

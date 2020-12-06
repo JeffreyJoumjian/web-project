@@ -18,9 +18,11 @@ if (!isset($_SESSION["user"]) || $_SESSION["user"]["isAdmin"] == 1) {
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/navbar.css">
   <title>My Orders</title>
   <link rel="icon" href="../img/homepage/pizzalogo.jpg">
 </head>
+
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-light">
@@ -74,22 +76,23 @@ if (!isset($_SESSION["user"]) || $_SESSION["user"]["isAdmin"] == 1) {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Log Out</button>
+                <button id="btn-logout" type="button" class="btn btn-danger" data-dismiss="modal">Log Out</button>
               </div>
             </div>
           </div>
         </div>
         <!-- End of Modal -->
 
+        <?php include './MenuNavbar.php';?>
         <!-- Top Nav -->
-        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
+        <!-- <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
           <div class="row align-items-center">
             <div class="col-md-4">
               <h4 class="text-light text-uppercase mb-0">User Dashboard</h4>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- End of Top Nav -->
     </div>
   </div>
@@ -100,7 +103,7 @@ if (!isset($_SESSION["user"]) || $_SESSION["user"]["isAdmin"] == 1) {
 <!--Beginning of My Orders-->
 
 
-<div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+<div class="col-xl-10 col-lg-9 col-md-8 ml-auto mt-5">
   <h3 class="text-muted text-center mb-3">My Orders</h3>
   <table class="table table-striped table-dark">
     <thead>

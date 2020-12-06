@@ -1,5 +1,7 @@
 import * as orderFunctions from './orderFunctions.js';
+import './navbar.js';
 import { getUserFromCookie, sendOrderToServer } from './serverFunctions.js';
+import setUpSignInBtnListeer from './navbar.js';
 
 const form = {
 	nameInput: document.querySelector('#inpName'),
@@ -20,6 +22,8 @@ async function setUpPage() {
 
 	if (USER)
 		setUpFormFields();
+
+	setUpSignInBtnListeer();
 
 }
 

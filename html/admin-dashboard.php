@@ -26,7 +26,6 @@ if (!isset($_SESSION["user"]) || !($_SESSION["user"]["isAdmin"] == 1)) {
 <body>
 
 
-
   <!-- Navbar -->
   <nav class="navbar navbar-expand-md navbar-light">
 
@@ -102,7 +101,7 @@ if (!isset($_SESSION["user"]) || !($_SESSION["user"]["isAdmin"] == 1)) {
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Log Out</button>
+          <button id="btn-logout"type="button" class="btn btn-danger" data-dismiss="modal">Log Out</button>
         </div>
       </div>
     </div>

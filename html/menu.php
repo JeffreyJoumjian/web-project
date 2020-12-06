@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,43 +18,7 @@
 </head>
 
 <body>
-
-	<nav class="navbar navbar-expand-lg navbar-fixed">
-		<a class="navbar-brand" href="">Pizzeria</a>
-		<div class="order">
-			<i class="fas fa-store"></i>
-			<p class="order-count">0</p>
-		</div>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<div class="burger-line"></div>
-			<div class="burger-line"></div>
-			<div class="burger-line"></div>
-		</button>
-
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="home.php">Home</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" href="our-story.php">Our Story</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Menu</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="./contact-us.php">Contact</a>
-				</li>
-				<li class="nav-item">
-					<button type="button" class="btn btn-light btn-lg" id="btn-sign-in">Sign in</button>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
+<?php include './MenuNavbar.php';?>
 
 	<div class="container-fluid menu-container">
 		<div class="row">

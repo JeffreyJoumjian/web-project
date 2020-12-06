@@ -24,6 +24,10 @@ function setUpPage() {
 function setUpButtonListeners() {
 	btnCancel.addEventListener('click', () => setUserFields(USER));
 	btnSave.addEventListener('click', () => updateUserDetails());
+
+	// log out button
+	const btnModalLogOut = document.querySelector('#btn-logout');
+	btnModalLogOut.addEventListener('click', () => window.location.assign('../html/sign-out.php'));
 }
 
 function setUpUserDetails() {

@@ -1,3 +1,5 @@
+
+import './navbar.js';
 import { getUserFromCookie, getUserOrdersFromServer } from "./serverFunctions.js";
 
 const profileName = [...document.querySelectorAll('.profile-name')];
@@ -10,13 +12,20 @@ setUpPage();
 
 async function setUpPage() {
 
+	// if cookies were set => user is logged in
 	if (USER) {
+		//  get user's orders from the database
 		const orders = await getUserOrdersFromServer();
 		if (orders)
 			orders.forEach(order => addItem(order));
 	}
-
+	// set his profile name using the cookie
 	profileName.forEach(pname => pname.innerText = USER.name);
+
+	// log out button
+	const btnModalLogOut = document.querySelector('#btn-logout');
+	btnModalLogOut.addEventListener('click', () => window.location.assign('../html/sign-out.php'));
+
 }
 
 

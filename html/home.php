@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 
 <head>
@@ -24,7 +27,8 @@
 
     <!-- Nav Bar -->
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg">
+      <?php include './DefaultNavbar.php';?>
+      <!-- <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="">Pizzeria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +58,7 @@
             </li>
           </ul>
         </div>
-      </nav>
+      </nav> -->
       <!-- Title -->
       <div class="row">
         <div class="col-lg-6">

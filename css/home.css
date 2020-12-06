@@ -17,7 +17,7 @@ h2 {
 #features {
   padding: 7% 15%;
 }
-#order{
+#order {
   margin: auto;
 }
 .ico {
@@ -40,7 +40,7 @@ h2 {
 }
 #story {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("/img/backgrounds/black-bg.jpg");
+    url("../img/backgrounds/black-bg.jpg");
   padding: 7% 15%;
 
   background-size: 100%;

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <header>
   <meta charset="UTF-8">
@@ -24,7 +27,8 @@
   <section id="title">
     <!-- Nav Bar -->
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg">
+      <?php include './DefaultNavbar.php';?>
+      <!-- <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="">Pizzeria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +56,7 @@
             </li>
           </ul>
         </div>
-      </nav>
+      </nav> -->
       <h1>Satisfaction With Every Bite!</h1>
   </section>
   <section id="commitment">
@@ -103,10 +107,6 @@
     <i class="ico fab fa-twitter"></i>
     <i class="ico fab fa-facebook-square"></i>
     <i class="ico fas fa-envelope-square"></i>
-
-
-
-
   </footer>
 </body>
 

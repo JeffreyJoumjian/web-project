@@ -1,3 +1,4 @@
+import './navbar.js';
 import * as orderFunctions from './orderFunctions.js';
 import * as server from './serverFunctions.js'
 
@@ -17,6 +18,7 @@ async function setUpPage() {
 		menuItems.forEach(item => createMenuItem(item));
 
 	setUpOrderButtonListeners();
+	setUpSignInBtnListeer();
 }
 
 function addMenuItemListeners(item) {

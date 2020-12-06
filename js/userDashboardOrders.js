@@ -1,21 +1,22 @@
-import { getUserOrdersFromServer, sendUserToServer } from "./serverFunctions.js";
+import { getUserFromCookie, getUserOrdersFromServer } from "./serverFunctions.js";
 
-let USER = {
-	_id: 2
-}
+const profileName = [...document.querySelectorAll('.profile-name')];
+
+let USER = getUserFromCookie();
 
 
 setUpPage();
 
 
 async function setUpPage() {
-	USER = await sendUserToServer(USER, "user");
 
 	if (USER) {
-		const orders = await getUserOrdersFromServer({ user_id: USER._id });
-		orders.forEach(order => addItem(order));
+		const orders = await getUserOrdersFromServer();
+		if (orders)
+			orders.forEach(order => addItem(order));
 	}
 
+	profileName.forEach(pname => pname.innerText = USER.name);
 }
 
 

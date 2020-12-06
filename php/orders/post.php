@@ -1,19 +1,22 @@
 <?php
 require_once "../database.php";
 
+session_start();
+
 // TODO CHECK IF USER IS ADMIN
 if (isset($_GET["f"])) {
     $function = $_GET["f"];
 
     if ($function === "userOrders") {
-        if (isset($_POST["user_id"])) {
-            $user_id = $_POST["user_id"];
+        if (isset($_SESSION["user"])) {
+
+            $user_id = $_SESSION["user"]["_id"];
 
             $sql = "SELECT * FROM ORDERS WHERE `user_id`=:user_id";
 
             $stmt = $db->prepare($sql);
             $stmt->execute(array(
-                ":user_id" => $user_id,
+                ":user_id" => (int) $user_id,
             ));
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

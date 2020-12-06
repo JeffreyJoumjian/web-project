@@ -62,17 +62,15 @@ function setUpErrors() {
 					startSignIn();
 					setTimeout(() => {
 						window.location.reload();
-						// window.location.assign(`${site}/${redirect}-dashboard.html`);
 					}, 3500);
 				} else {
-					showErrors('in', false);
+					showErrors('in', true);
 					emailErrors('invalid', true);
 				}
 			}
 			// error logging in 
 			else {
-				showErrors(false);
-				addressErrors(true);
+				showErrors(true);
 				emailErrors('invalid', true);
 			}
 
@@ -103,7 +101,7 @@ function setUpErrors() {
 					if (user?.result) {
 						startSignIn();
 						setTimeout(() => {
-							// window.location.assign(`${site}/user-dashboard.html`);
+							window.location.reload();
 						}, 3500);
 
 					} else
@@ -111,6 +109,7 @@ function setUpErrors() {
 				}
 				else {
 					showErrors('up', false);
+					addressErrors(true);
 					emailErrors('exists', false)
 				}
 			}

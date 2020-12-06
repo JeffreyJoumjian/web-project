@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"]) || $_SESSION["user"]["isAdmin"] == 1) {
+    header('Location: sign-in.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -32,11 +40,11 @@
           <div class="bottom-border pb-3">
             <img src="../img/dashboard/cust5.jpeg" width="50" height="50" class="rounded-circle mr-3"
               alt="user profile picture">
-            <a href="#" class="text-white">Mark Otto</a>
+            <a href="#" class="text-white"> <span class="profile-name"></span></a>
           </div>
           <ul class="navbar-nav flex-column mt-4">
             <li class="nav-item">
-              <a href="./user-dashboard.html" class="nav-link text-white p-3 mb-2 sidebar-link"><i
+              <a href="./user-dashboard.php" class="nav-link text-white p-3 mb-2 sidebar-link"><i
                   class="fas fa-user text-light fa-lg mr-3"></i>My Profile</a>
             </li>
 

@@ -1,5 +1,8 @@
 <?php
 require_once "../database.php";
+require_once "../cookie.php";
+
+session_start();
 
 $function = $_GET["f"];
 
@@ -9,11 +12,8 @@ function isValidEmail($email)
     return preg_match($regex, $email);
 }
 
-// TODO CHECK IF USER IS ADMIN
 if (isset($function)) {
 
-    // CHANGE get from cookie and session and not id
-    // get users based on id stored in cookie
     if ($function === "user") {
         if (isset($_POST["_id"])) {
             $_id = $_POST["_id"];
@@ -92,11 +92,11 @@ if (isset($function)) {
         }
     } else if ($function === "update") {
 
-        if (isset($_POST["_id"]) && isset($_POST['name']) &&
+        if ((isset($_POST["_id"]) || isset($_SESSION["user"]["_id"])) && isset($_POST['name']) &&
             isset($_POST['email']) && isValidEmail($_POST['email']) &&
             isset($_POST['address']) && isset($_POST['phone'])) {
 
-            $_id = $_POST["_id"];
+            $_id = isset($_POST["_id"]) ? $_POST["_id"] : $_SESSION["user"]["_id"];
             $name = $_POST['name'];
             $email = $_POST['email'];
             $address = $_POST['address'];
@@ -136,7 +136,17 @@ if (isset($function)) {
                 if ($isAdmin) {
                     $result["result"]["isAdmin"] = ($isAdmin ? 1 : 0);
                 }
-                echo json_encode($result);
+                $profileUpdate = !isset($_POST["_id"]);
+
+                if ($profileUpdate) {
+                    $result["result"]["isAdmin"] = $_SESSION["user"]["isAdmin"];
+                    setSessionCookies($result["result"]);
+                    $cookie = setCustomCookie($result["result"]);
+                    echo $cookie;
+                } else {
+                    echo json_encode($result);
+                }
+
             }
 
         }

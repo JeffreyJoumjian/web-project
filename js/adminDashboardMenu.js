@@ -1,4 +1,4 @@
-import { getMenuItemsFromServer, sendMenuItemToServer } from "./serverFunctions.js";
+import { getMenuItemsFromServer, getUserFromCookie, sendMenuItemToServer } from "./serverFunctions.js";
 
 const editModal = document.querySelector('#editItemModal');
 const deleteModal = document.querySelector('#deleteItemModal');
@@ -30,6 +30,7 @@ const addModalItems = {
 	btnModalAdd: addModal.querySelector('#btn-add'),
 	btnModalClose: addModal.querySelector('#btnClose')
 }
+let USER = getUserFromCookie();
 
 let selectedItem;
 const menuItems = document.querySelector('.menu-items');
@@ -43,6 +44,8 @@ async function setUpPage() {
 		menuItems.forEach(item => { createMenuItem(item); });
 
 	setUpModalButtonListeners();
+
+	document.querySelector('.profile-name').innerText = USER.name;
 }
 
 function setUpModalButtonListeners() {

@@ -53,7 +53,7 @@ if (!isset($_SESSION["user"]) || $_SESSION["user"]["isAdmin"] == 1) {
             </li>
 
             <li class="nav-item">
-              <a href="./my-orders.html" class="nav-link text-white p-3 mb-2 sidebar-link"><i
+              <a href="./my-orders.php" class="nav-link text-white p-3 mb-2 sidebar-link"><i
                   class="fas fa-shopping-cart text-light fa-lg mr-3"></i>My Orders</a>
             </li>
 

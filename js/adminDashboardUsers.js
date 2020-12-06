@@ -1,4 +1,4 @@
-import { getUsersFromServer, sendUserToServer } from './serverFunctions.js';
+import { getUserFromCookie, getUsersFromServer, sendUserToServer } from './serverFunctions.js';
 
 const editModal = document.querySelector('#editItemModal');
 const deleteModal = document.querySelector('#deleteItemModal');
@@ -36,6 +36,7 @@ const addModalItems = {
 }
 
 let selectedItem;
+let USER = getUserFromCookie();
 const userItems = document.querySelector('tbody#users');
 
 setUpPage();
@@ -48,6 +49,8 @@ async function setUpPage() {
 		users.forEach(user => createUserItem(user));
 
 	setUpModalButtonListeners();
+
+	document.querySelector('.profile-name').innerText = USER.name;
 }
 
 function setUpModalButtonListeners() {

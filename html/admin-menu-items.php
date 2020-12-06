@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["user"]) || !(bool) $_SESSION["user"]["isAdmin"]) {
+if (!isset($_SESSION["user"]) || !($_SESSION["user"]["isAdmin"] == 1)) {
     header('Location: sign-in.php');
 }
 ?>
@@ -44,11 +44,11 @@ if (!isset($_SESSION["user"]) || !(bool) $_SESSION["user"]["isAdmin"]) {
             <div class="bottom-border pb-3">
               <img src="../img/dashboard/admin.jpeg" width="50" height="50" class="rounded-circle mr-3"
                 alt="admin profile image">
-              <a href="#" class="text-white">Admin</a>
+                <a href="#" class="text-white"><span class="profile-name"></span></a>
             </div>
             <ul class="navbar-nav flex-column mt-4">
               <li class="nav-item">
-                <a href="./admin-dashboard.html" class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                <a href="./admin-dashboard.php" class="nav-link text-white p-3 mb-2 sidebar-link"><i
                     class="fas fa-users text-light fa-lg mr-3"></i>Users</a>
               </li>
               <li class="nav-item">

@@ -1,4 +1,4 @@
-import { sendUserToServer, getCookie } from "./serverFunctions.js";
+import { sendUserToServer, getUserFromCookie } from "./serverFunctions.js";
 
 const profileName = [...document.querySelectorAll('.profile-name')];
 const nameInput = document.querySelector('#inpName');
@@ -9,11 +9,8 @@ const addressInput = document.querySelector('#inpAddress');
 const btnCancel = document.querySelector('#btn-cancel');
 const btnSave = document.querySelector('#btn-save');
 
-let USER = {
-	_id: 2
-}
+let USER = getUserFromCookie();
 
-console.log(getCookie("webprojectcookie"));
 
 
 setUpPage();
@@ -29,10 +26,7 @@ function setUpButtonListeners() {
 	btnSave.addEventListener('click', () => updateUserDetails());
 }
 
-// CHANGE GET USER FROM COOKIES
-async function setUpUserDetails() {
-
-	USER = await sendUserToServer(USER, "user");
+function setUpUserDetails() {
 	if (USER)
 		setUserFields();
 }
@@ -52,7 +46,6 @@ function setUserFields() {
 
 async function updateUserDetails() {
 	let user = {
-		_id: USER._id,
 		name: nameInput.value.trim(),
 		email: emailInput.value.trim(),
 		address: addressInput.value.trim(),

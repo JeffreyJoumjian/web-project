@@ -65,15 +65,15 @@ export async function sendMenuItemToServer(inputs, func) {
 	return data;
 }
 
-export async function getUserOrdersFromServer(inputs) {
+export async function getUserOrdersFromServer() {
 
-	const formData = new FormData();
-	for (let key in inputs)
-		formData.append(key, inputs[key]);
+	// const formData = new FormData();
+	// for (let key in inputs)
+	// 	formData.append(key, inputs[key]);
 
 	const res = await fetch('../php/orders/post.php?f=userOrders', {
 		method: 'POST',
-		body: formData
+		// body: formData
 	});
 
 	const data = await res.json();
@@ -107,4 +107,8 @@ export function getCookie(cookieName) {
 		if (name === cookieName)
 			return { name, value };
 	}
+}
+
+export function getUserFromCookie() {
+	return JSON.parse(getCookie("webprojectcookie").value).result;;
 }

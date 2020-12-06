@@ -39,7 +39,7 @@ if (isset($_GET["f"])) {
                 setcookie('webprojectcookie2_id', '', time() - 3600, '/'); // admin cookie
 
                 $_id = $result["_id"];
-                $isAdmin = $result["isAdmin"];
+                $isAdmin = (boolean) $result["isAdmin"];
                 $_SESSION["user"] = array("_id" => $_id);
 
                 if ($isAdmin) {

@@ -57,7 +57,8 @@ function setUpErrors() {
 				// TODO username and password is correct
 				if (user?.result) {
 
-					let redirect = user.result.isAdmin ? "admin" : "user"
+					let redirect = user.result.isAdmin == 1 ? "admin" : "user";
+					console.log(user.result.isAdmin, user.result.isAdmin == 1, redirect);
 
 					startSignIn();
 					setTimeout(() => {

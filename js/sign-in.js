@@ -418,7 +418,6 @@ function load() {
 				hidePopup(signPopup);
 				loadingLine.style.opacity = 0;
 				loadingText.style.opacity = 0;
-				console.log(0);
 				clearInterval(t);
 			}
 

@@ -151,7 +151,6 @@ async function saveItem(selectedItem) {
 	}
 
 	updatedItem = await sendMenuItemToServer(updatedItem, 'update');
-	console.log(updatedItem);
 	if (updatedItem?.result) {
 
 		const { imgSrc, name, price, ingredients } = updatedItem.result;

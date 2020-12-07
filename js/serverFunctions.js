@@ -23,7 +23,6 @@ export async function sendUserToServer(inputs, func) {
 	});
 
 	const data = await res.json();
-	console.log(data);
 	return data;
 }
 
@@ -39,7 +38,6 @@ export async function signInUser(inputs) {
 	});
 
 	const data = await res.json();
-	console.log(data);
 	return data;
 
 }
@@ -72,7 +70,6 @@ export async function getUserOrdersFromServer() {
 	});
 
 	const data = await res.json();
-	console.log(data);
 	return data;
 }
 

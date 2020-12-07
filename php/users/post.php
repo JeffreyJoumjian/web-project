@@ -131,7 +131,7 @@ if (isset($function)) {
 
         }
     } else if ($function === "delete") {
-        $_id = $_POST["_id"];
+        $_id = isset($_POST["_id"]) ? $_POST["_id"] : $_SESSION["user"]["_id"];
 
         if (isset($_id)) {
             $sql = "DELETE FROM USERS WHERE _id = :_id";
@@ -145,7 +145,7 @@ if (isset($function)) {
             if ($result) {
                 $result = array(
                     "result" => array(
-                        "_id" => $_id,
+                        "_id" => (int) $_id,
                     ),
                 );
                 echo json_encode($result);

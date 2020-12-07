@@ -8,10 +8,9 @@ const addressInput = document.querySelector('#inpAddress');
 
 const btnCancel = document.querySelector('#btn-cancel');
 const btnSave = document.querySelector('#btn-save');
+const btnDelete = document.querySelector('#btn-deactivate');
 
 let USER = getUserFromCookie();
-
-
 
 setUpPage();
 
@@ -24,10 +23,11 @@ function setUpPage() {
 function setUpButtonListeners() {
 	btnCancel.addEventListener('click', () => setUserFields(USER));
 	btnSave.addEventListener('click', () => updateUserDetails());
+	btnDelete.addEventListener('click', () => deleteUser());
 
 	// log out button
 	const btnModalLogOut = document.querySelector('#btn-logout');
-	btnModalLogOut.addEventListener('click', () => window.location.assign('../html/sign-out.php'));
+	btnModalLogOut.addEventListener('click', () => window.location.assign('../php/sign-out.php'));
 }
 
 function setUpUserDetails() {
@@ -47,6 +47,13 @@ function setUserFields() {
 	phoneInput.value = parseInt(phone);
 }
 
+async function deleteUser() {
+	let user = {};
+	user = await sendUserToServer(user, 'delete');
+
+	if (user?.result)
+		window.location.assign('../php/sign-out.php');
+}
 
 async function updateUserDetails() {
 	let user = {

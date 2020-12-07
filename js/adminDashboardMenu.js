@@ -51,7 +51,7 @@ async function setUpPage() {
 function setUpModalButtonListeners() {
 	// log out button
 	const btnModalLogOut = document.querySelector('#btn-logout');
-	btnModalLogOut.addEventListener('click', () => window.location.assign('../html/sign-out.php'));
+	btnModalLogOut.addEventListener('click', () => window.location.assign('../php/sign-out.php'));
 
 	// for add item button
 	const btnAdd = document.querySelector('#btnAdd');

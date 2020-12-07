@@ -5,4 +5,4 @@ $_SESSION["user"] = "";
 setcookie('webprojectcookie', '', time() - 3600, '/');
 session_destroy();
 
-header('Location: sign-in.php');
+header('Location: ../html/sign-in.php');

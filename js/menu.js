@@ -1,4 +1,4 @@
-import './navbar.js';
+import setUpSignInBtnListener from './navbar.js';
 import * as orderFunctions from './orderFunctions.js';
 import * as server from './serverFunctions.js'
 
@@ -10,7 +10,7 @@ const menu = document.querySelector('.menu-items');
 setUpPage();
 
 async function setUpPage() {
-
+	setUpSignInBtnListener();
 	orderFunctions.loadItemsFromStorage();
 
 	const menuItems = await server.getMenuItemsFromServer();
@@ -18,7 +18,7 @@ async function setUpPage() {
 		menuItems.forEach(item => createMenuItem(item));
 
 	setUpOrderButtonListeners();
-	setUpSignInBtnListeer();
+
 }
 
 function addMenuItemListeners(item) {

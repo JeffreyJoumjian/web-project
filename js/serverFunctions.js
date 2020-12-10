@@ -102,5 +102,5 @@ export function getCookie(cookieName) {
 }
 
 export function getUserFromCookie() {
-	return JSON.parse(getCookie("webprojectcookie").value).result;;
+	return JSON.parse(getCookie("webprojectcookie")?.value)?.result;
 }

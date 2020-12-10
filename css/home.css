@@ -128,10 +128,18 @@ h3 {
   text-align: center;
 }
 
+p.rating-text {
+  font-weight: bold;
+  margin-left: 1rem;
+}
 .input {
   margin-bottom: 1.5rem;
   margin-left: 1rem;
   padding: 1rem;
+}
+
+#inpRating {
+  padding: 0;
 }
 .message {
   margin-left: 1rem;
@@ -217,4 +225,8 @@ h3 {
 .price {
   font-family: "Oregano", cursive;
   font-size: 64px;
+}
+
+.review-container {
+  display: none;
 }

@@ -108,6 +108,7 @@ session_start();
     <i class="ico fab fa-facebook-square"></i>
     <i class="ico fas fa-envelope-square"></i>
   </footer>
+  <script src="../js/ourStory.js" type="module"></script>
 </body>
 
 </html>

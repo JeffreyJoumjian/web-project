@@ -1,9 +1,8 @@
 <?php
 require_once "../cookie.php";
+require_once '../database.php';
 
 session_start();
-
-require $_SERVER['DOCUMENT_ROOT'] . '/web-project/php/database.php';
 
 // Sign in function
 // checks if user exists

@@ -57,31 +57,44 @@ session_start();
       </aside>
 
       <form class="">
-        <input class="input" type="text" placeholder="Name" name="Name" value="name" required>
-        <input class="input" type="text" placeholder="Email" name="Email" value="email" required>
+        <input id="inpName" class="input" type="text" placeholder="Name" name="Name" required>
+        <input id="inpEmail" class="input" type="text" placeholder="Email" name="Email" required>
         <br>
 
-        <input class="input" type="text" placeholder="phone" name="Telephone Number" value="phone" required>
+        <input id="inpPhone" class="input" type="number" placeholder="Phone" name="Phone" required>
 
 
-        <input class="input" type="text" placeholder="City" name="City" value="city" required>
+        <input id="inpAddress" class="input" type="text" placeholder="Address" name="Address" required>
         <br>
-
 
         <button class="general btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          General Inquiry
-        </button>
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">General Inquiry</button>
         <br>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item">Corporate Membership</a>
-          <a class="dropdown-item">Customer Service Responsibility</a>
+          <a class="dropdown-item">Menu Item Review</a>
+          <a class="dropdown-item">General Inquiry</a>
+          <a class="dropdown-item">Customer Service</a>
           <a class="dropdown-item">Comments/Feedback</a>
           <a class="dropdown-item">Technical Issue</a>
         </div>
-        <textarea class="message d-block" name="message" value="message" placeholder="Messages"></textarea>
 
-        <button type="button" class="submit btn btn-dark">Submit</button>
+        <div class="review-container">
+          <button class="general btn btn-secondary dropdown-toggle" type="button" id="dropdownReviewMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Item
+          </button>
+          <br>
+          <div class="dropdown-menu dropdown-review" aria-labelledby="dropdownReviewMenuButton"></div>
+          <p class="rating-text">Rating: <span class="rating"> 5</span></p>
+          <input id="inpRating" class="input" type="range" min="1" max="5" value="5" step="1">
+          <!-- <div class="review-stars">
+            <span class="review-star"><i class=""/></span>
+          </div> -->
+        </div>
+
+        <textarea id="inpMessage" class="message d-block" name="message" placeholder="Messages"></textarea>
+
+        <button id="btn-submit" type="submit" class="submit btn btn-dark">Submit</button>
 
       </form>
     </div>
@@ -105,6 +118,7 @@ session_start();
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
+  <script src="../js/contactUs.js" type="module"></script>
 </body>
 
 </html>

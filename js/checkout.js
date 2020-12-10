@@ -1,7 +1,6 @@
 import * as orderFunctions from './orderFunctions.js';
-import './navbar.js';
 import { getUserFromCookie, sendOrderToServer } from './serverFunctions.js';
-import setUpSignInBtnListeer from './navbar.js';
+import setUpSignInBtnListener from './navbar.js';
 
 const form = {
 	nameInput: document.querySelector('#inpName'),
@@ -11,19 +10,20 @@ const form = {
 
 const alert = document.querySelector('.alert');
 
-let USER = getUserFromCookie();
+let USER;
 
 setUpPage();
 
 async function setUpPage() {
 	// loads items in cart and adds it to the order
 	orderFunctions.loadItemsFromStorage();
+	setUpSignInBtnListener();
 	setUpButtonListeners();
 
+	USER = getUserFromCookie();
 	if (USER)
 		setUpFormFields();
 
-	setUpSignInBtnListeer();
 
 }
 

@@ -1,5 +1,4 @@
-import './navbar.js';
-import setUpSignInBtnListeer from './navbar.js';
+import setUpSignInBtnListener from './navbar.js';
 import { getMenuItemsFromServer } from './serverFunctions.js'
 const featureBoxes = document.querySelector('.feature-boxes');
 const offers = document.querySelector('.offers');
@@ -7,6 +6,7 @@ const offers = document.querySelector('.offers');
 setUpPage();
 
 async function setUpPage() {
+	setUpSignInBtnListener();
 	const menuItems = await getMenuItemsFromServer();
 
 	for (let i = 0; i < 6; i++) {
@@ -16,7 +16,7 @@ async function setUpPage() {
 			createOfferItem(menuItems[i]);
 	}
 
-	setUpSignInBtnListeer();
+
 }
 
 function createFeatureItem(pizzaItem) {

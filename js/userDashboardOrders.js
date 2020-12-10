@@ -1,5 +1,3 @@
-
-import './navbar.js';
 import { getUserFromCookie, getUserOrdersFromServer } from "./serverFunctions.js";
 
 const profileName = [...document.querySelectorAll('.profile-name')];

@@ -35,8 +35,9 @@ session_start();
   <section id="contact">
     <div class="all">
       <h2> Contact us</h2>
+    <div class="alert alert-success ml-3" role="alert">
+    </div>
       <p class="inquiries">Any inquiries? Leave us a message and we will get back to you as soon as <br> possible.</p>
-
 
       <aside>
         <div class="mapouter">
@@ -80,9 +81,7 @@ session_start();
 
         <div class="review-container">
           <button class="general btn btn-secondary dropdown-toggle" type="button" id="dropdownReviewMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Select Item
-          </button>
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Item</button>
           <br>
           <div class="dropdown-menu dropdown-review" aria-labelledby="dropdownReviewMenuButton"></div>
           <p class="rating-text">Rating: <span class="rating"> 5</span></p>
@@ -92,7 +91,7 @@ session_start();
           </div> -->
         </div>
 
-        <textarea id="inpMessage" class="message d-block" name="message" placeholder="Messages"></textarea>
+        <textarea id="inpMessage" class="message d-block" name="message" placeholder="Messages" required></textarea>
 
         <button id="btn-submit" type="submit" class="submit btn btn-dark">Submit</button>
 

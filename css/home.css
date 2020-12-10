@@ -230,3 +230,7 @@ p.rating-text {
 .review-container {
   display: none;
 }
+
+.alert {
+  display: none;
+}
